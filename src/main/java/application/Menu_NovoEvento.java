@@ -91,10 +91,10 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Titulo_NovoEvento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         Titulo_NovoEvento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Titulo_NovoEvento.setText("EEMI Cova da Beira - Novo Evento");
         Titulo_NovoEvento.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Titulo_NovoEvento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         Titulo_NovoEvento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         Sair.setActionCommand("BT_Sair");
@@ -114,23 +114,23 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
 
         PainelVitima.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
 
-        Label_Processo.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Processo.setText("Processo:");
+        Label_Processo.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Label_Nome.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Nome.setText("Nome:");
+        Label_Nome.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Label_D_Nascimento.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_D_Nascimento.setText("D.Nascimento");
+        Label_D_Nascimento.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Label_Genero.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Genero.setText("Genero");
+        Label_Genero.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Label_Episódio.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Episódio.setText("Episódio:");
+        Label_Episódio.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Label_D_Admissao_Hospitalar.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_D_Admissao_Hospitalar.setText("D.Admissão Hospitalar");
+        Label_D_Admissao_Hospitalar.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
         Nome_Vitima.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Nome_Vitima.addActionListener(new java.awt.event.ActionListener() {
@@ -153,9 +153,9 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             }
         });
 
+        Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino" }));
         Genero.setBackground(new java.awt.Color(242, 242, 242));
         Genero.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino" }));
         Genero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GeneroActionPerformed(evt);
@@ -238,29 +238,29 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         jDesktopPaneEvento.setBackground(getBackground());
         jDesktopPaneEvento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Evento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 10))); // NOI18N
 
-        Label_Hora_Evento.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Hora_Evento.setText("Hora Evento:");
+        Label_Hora_Evento.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
         Label_Hora_Chamada.setText("Hora Chamada:");
         Label_Hora_Chamada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Label_Hora_Chegada_EEMI.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Hora_Chegada_EEMI.setText("Hora Chegada EEMI:");
+        Label_Hora_Chegada_EEMI.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Label_Local.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Local.setText("Local:");
+        Label_Local.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Label_Medico.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Medico.setText("Medico EEMI:");
+        Label_Medico.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Label_Enfermeiro_EEMI.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Enfermeiro_EEMI.setText("Enfermeiro EEMI:");
+        Label_Enfermeiro_EEMI.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Label_Quem_Ativa.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Quem_Ativa.setText("Quem ativa:");
+        Label_Quem_Ativa.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Label_PCR.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_PCR.setText("PCR?:");
+        Label_PCR.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
         Local_box.setBackground(new java.awt.Color(242, 242, 242));
         Local_box.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -294,8 +294,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             }
         });
 
-        hora_Chegada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        hora_Chegada.setText("HH:mm");
+        hora_Chegada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("HH:mm"))));
         hora_Chegada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         hora_Chegada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,8 +302,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             }
         });
 
-        hora_Chamada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        hora_Chamada.setText("HH:mm");
+        hora_Chamada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("hh:mm"))));
         hora_Chamada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         hora_Chamada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,8 +310,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             }
         });
 
-        hora_Evento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        hora_Evento.setText("HH:mm");
+        hora_Evento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("HH:mm"))));
         hora_Evento.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         hora_Evento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -321,9 +318,9 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             }
         });
 
+        pcr_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "sim", "não" }));
         pcr_box.setBackground(new java.awt.Color(242, 242, 242));
         pcr_box.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        pcr_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "sim", "não" }));
         pcr_box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pcr_boxActionPerformed(evt);
