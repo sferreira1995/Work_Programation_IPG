@@ -4,7 +4,6 @@ application\Menu_RCE_Nao.class
 application\Menu_EEMI_SAV_SIM$5.class
 application\Menu_EEMI_SAV_SIM.class
 application\Menu_Destino.class
-application\Menu_NovoEvento$16.class
 application\Menu_NovoEvento$12.class
 application\Menu_PCR.class
 application\Main.class
@@ -20,7 +19,6 @@ application\Menu_EEMI_SAV_NAO$2.class
 application\Menu_NovoEvento$3.class
 classesApp\Motivo_EEMI_SAV_NAO.class
 application\Menu_EEMI_SAV_NAO$5.class
-application\Menu_NovoEvento$19.class
 application\Menu_RCE_Nao$3.class
 application\Menu_Destino$1.class
 application\Menu_NovoEvento$1.class
@@ -30,7 +28,6 @@ application\Menu_RCE_Nao$1.class
 application\Menu_NovoEvento$4.class
 application\Menu_1.class
 application\Menu_EEMI_SAV_NAO$3.class
-application\Menu_NovoEvento$18.class
 classesApp\Local.class
 classesApp\Enfermeiro.class
 application\Menu_RCE_Nao$4.class
@@ -41,7 +38,6 @@ classesApp\Quem_Ativa.class
 application\Menu_EEMI_SAV_SIM$3.class
 application\Menu_NovoEvento$7.class
 application\Menu_1$3.class
-application\Menu_NovoEvento$20.class
 application\Menu_NovoEvento$14.class
 application\Menu_Destino$2.class
 application\Menu_NovoEvento$2.class
@@ -54,7 +50,6 @@ application\Menu_RCE_Sim$2.class
 application\Menu_RCE_Nao$5.class
 application\Menu_Destino$5.class
 application\Menu_NovoEvento$11.class
-application\Menu_NovoEvento$17.class
 application\Menu_EEMI_SAV_SIM$4.class
 application\Menu_PCR$6.class
 application\Menu_1$4.class

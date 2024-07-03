@@ -18,11 +18,18 @@ import classesApp.Local;
 import classesApp.Medico;
 import classesApp.Motivo;
 import classesApp.Quem_Ativa;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 public class Menu_NovoEvento extends javax.swing.JFrame {
+
+    private static final Pattern FULL_NAME_PATTERN = Pattern.compile("^[a-zA-Z\\s]+$");
 
     /**
      * Creates new form Menu_1
@@ -41,7 +48,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         Titulo_NovoEvento = new javax.swing.JLabel();
         Sair = new java.awt.Button();
         jDesktopPlane_Vitima = new javax.swing.JDesktopPane();
@@ -54,10 +60,10 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         Label_D_Admissao_Hospitalar = new javax.swing.JLabel();
         Nome_Vitima = new javax.swing.JTextField();
         N_Processo = new javax.swing.JTextField();
-        Data_Nascimento = new javax.swing.JTextField();
         N_Episodio = new javax.swing.JTextField();
-        Data_Admissao_Hospitalar = new javax.swing.JTextField();
         Genero = new javax.swing.JComboBox<>();
+        data_Nascimento = new com.github.lgooddatepicker.components.DatePicker();
+        dataAdmicaoHospitalar = new com.github.lgooddatepicker.components.DatePicker();
         jDesktopPaneEvento = new javax.swing.JDesktopPane();
         Label_Hora_Evento = new javax.swing.JLabel();
         Label_Hora_Chamada = new javax.swing.JLabel();
@@ -67,34 +73,19 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         Label_Enfermeiro_EEMI = new javax.swing.JLabel();
         Label_Quem_Ativa = new javax.swing.JLabel();
         Label_PCR = new javax.swing.JLabel();
-        PCR_S = new javax.swing.JButton();
-        PCR_N = new javax.swing.JButton();
         Local_box = new javax.swing.JComboBox<>();
         Quem_Ativa_box = new javax.swing.JComboBox<>();
         Nome_Medico = new javax.swing.JComboBox<>();
         Nome_Enfermeiro = new javax.swing.JComboBox<>();
-        Data_Hora_Chegada = new javax.swing.JFormattedTextField();
-        Data_Hora_Chamada = new javax.swing.JFormattedTextField();
-        Data_Hora_Evento = new javax.swing.JFormattedTextField();
+        hora_Chegada = new javax.swing.JFormattedTextField();
+        hora_Chamada = new javax.swing.JFormattedTextField();
+        hora_Evento = new javax.swing.JFormattedTextField();
+        pcr_box = new javax.swing.JComboBox<>();
+        dataEvento = new com.github.lgooddatepicker.components.DatePicker();
+        chamadaData = new com.github.lgooddatepicker.components.DatePicker();
+        chegadaData = new com.github.lgooddatepicker.components.DatePicker();
         guardarButton = new java.awt.Button();
         validationString = new java.awt.Label();
-        Detalhes_Evento = new javax.swing.JDesktopPane();
-        PainelVitima1 = new javax.swing.JPanel();
-        Label_Resposta_Motivo_PCR = new javax.swing.JLabel();
-        Label_Resposta_PCR = new javax.swing.JLabel();
-        Label_Resposta_Equipa_Local_SAV = new javax.swing.JLabel();
-        Label_Resposta_EEMI_SAV = new javax.swing.JLabel();
-        Label_Resposta_Hora_Inicio_SAV = new javax.swing.JLabel();
-        Label_Resposta_Procedimentos_SAV = new javax.swing.JLabel();
-        Label_Resposta_Hora_Choque = new javax.swing.JLabel();
-        Label_Resposta_RCE = new javax.swing.JLabel();
-        Label_Resposta_RCE_Hora = new javax.swing.JLabel();
-        Label_Resposta_Destino_Servico = new javax.swing.JLabel();
-        Label_Resposta_Destino_Instituicao = new javax.swing.JLabel();
-        Label_Resposta_Motivo_Nao_SAV = new javax.swing.JLabel();
-        Label_Resposta_Hora_Suspencao_SAV = new javax.swing.JLabel();
-        jText_PCR = new javax.swing.JTextField();
-        jTextMotivo_PCR = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -153,24 +144,10 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             }
         });
 
-        Data_Nascimento.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Data_Nascimento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Data_NascimentoActionPerformed(evt);
-            }
-        });
-
         N_Episodio.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         N_Episodio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 N_EpisodioActionPerformed(evt);
-            }
-        });
-
-        Data_Admissao_Hospitalar.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Data_Admissao_Hospitalar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Data_Admissao_HospitalarActionPerformed(evt);
             }
         });
 
@@ -195,26 +172,26 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
                     .addComponent(Label_Episódio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Nome_Vitima)
                     .addGroup(PainelVitimaLayout.createSequentialGroup()
-                        .addComponent(N_Episodio, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Label_D_Admissao_Hospitalar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Data_Admissao_Hospitalar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(PainelVitimaLayout.createSequentialGroup()
-                        .addGroup(PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PainelVitimaLayout.createSequentialGroup()
+                                .addComponent(N_Episodio, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Label_D_Admissao_Hospitalar))
                             .addGroup(PainelVitimaLayout.createSequentialGroup()
                                 .addComponent(N_Processo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Label_D_Nascimento)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Data_Nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Nome_Vitima))
+                                .addComponent(Label_D_Nascimento)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Label_Genero)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(data_Nascimento, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                            .addComponent(dataAdmicaoHospitalar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 281, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(Label_Genero)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         PainelVitimaLayout.setVerticalGroup(
@@ -230,13 +207,13 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
                     .addComponent(Label_Processo)
                     .addComponent(N_Processo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Label_D_Nascimento)
-                    .addComponent(Data_Nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(data_Nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(N_Episodio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Label_Episódio)
                     .addComponent(Label_D_Admissao_Hospitalar)
-                    .addComponent(Data_Admissao_Hospitalar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dataAdmicaoHospitalar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -246,10 +223,10 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         jDesktopPlane_Vitima.setLayout(jDesktopPlane_VitimaLayout);
         jDesktopPlane_VitimaLayout.setHorizontalGroup(
             jDesktopPlane_VitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPlane_VitimaLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPlane_VitimaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(PainelVitima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jDesktopPlane_VitimaLayout.setVerticalGroup(
             jDesktopPlane_VitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,24 +260,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         Label_PCR.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_PCR.setText("PCR?:");
 
-        PCR_S.setBackground(new java.awt.Color(242, 242, 242));
-        PCR_S.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        PCR_S.setText("Sim");
-        PCR_S.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PCR_SActionPerformed(evt);
-            }
-        });
-
-        PCR_N.setBackground(new java.awt.Color(242, 242, 242));
-        PCR_N.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        PCR_N.setText("Nao");
-        PCR_N.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PCR_NActionPerformed(evt);
-            }
-        });
-
         Local_box.setBackground(new java.awt.Color(242, 242, 242));
         Local_box.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Local_box.addActionListener(new java.awt.event.ActionListener() {
@@ -333,30 +292,39 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             }
         });
 
-        Data_Hora_Chegada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        Data_Hora_Chegada.setText("00:00");
-        Data_Hora_Chegada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Data_Hora_Chegada.addActionListener(new java.awt.event.ActionListener() {
+        hora_Chegada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        hora_Chegada.setText("00:00");
+        hora_Chegada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        hora_Chegada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Data_Hora_ChegadaActionPerformed(evt);
+                hora_ChegadaActionPerformed(evt);
             }
         });
 
-        Data_Hora_Chamada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        Data_Hora_Chamada.setText("00:00");
-        Data_Hora_Chamada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Data_Hora_Chamada.addActionListener(new java.awt.event.ActionListener() {
+        hora_Chamada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        hora_Chamada.setText("00:00");
+        hora_Chamada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        hora_Chamada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Data_Hora_ChamadaActionPerformed(evt);
+                hora_ChamadaActionPerformed(evt);
             }
         });
 
-        Data_Hora_Evento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        Data_Hora_Evento.setText("00:00");
-        Data_Hora_Evento.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Data_Hora_Evento.addActionListener(new java.awt.event.ActionListener() {
+        hora_Evento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        hora_Evento.setText("00:00");
+        hora_Evento.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        hora_Evento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Data_Hora_EventoActionPerformed(evt);
+                hora_EventoActionPerformed(evt);
+            }
+        });
+
+        pcr_box.setBackground(new java.awt.Color(242, 242, 242));
+        pcr_box.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        pcr_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "sim", "não" }));
+        pcr_box.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pcr_boxActionPerformed(evt);
             }
         });
 
@@ -368,15 +336,17 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         jDesktopPaneEvento.setLayer(Label_Enfermeiro_EEMI, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPaneEvento.setLayer(Label_Quem_Ativa, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPaneEvento.setLayer(Label_PCR, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPaneEvento.setLayer(PCR_S, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPaneEvento.setLayer(PCR_N, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPaneEvento.setLayer(Local_box, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPaneEvento.setLayer(Quem_Ativa_box, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPaneEvento.setLayer(Nome_Medico, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPaneEvento.setLayer(Nome_Enfermeiro, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPaneEvento.setLayer(Data_Hora_Chegada, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPaneEvento.setLayer(Data_Hora_Chamada, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPaneEvento.setLayer(Data_Hora_Evento, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPaneEvento.setLayer(hora_Chegada, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPaneEvento.setLayer(hora_Chamada, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPaneEvento.setLayer(hora_Evento, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPaneEvento.setLayer(pcr_box, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPaneEvento.setLayer(dataEvento, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPaneEvento.setLayer(chamadaData, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPaneEvento.setLayer(chegadaData, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPaneEventoLayout = new javax.swing.GroupLayout(jDesktopPaneEvento);
         jDesktopPaneEvento.setLayout(jDesktopPaneEventoLayout);
@@ -386,80 +356,84 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Label_Local, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Local_box, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
-                        .addComponent(Label_Quem_Ativa, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Quem_Ativa_box, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
-                        .addComponent(Label_Medico, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Nome_Medico, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
+                                .addComponent(Label_Local, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Local_box, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
+                                .addComponent(Label_Quem_Ativa, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Quem_Ativa_box, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
+                                .addComponent(Label_Medico, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Nome_Enfermeiro, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Nome_Medico, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(90, 90, 90))
                     .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
                         .addComponent(Label_Enfermeiro_EEMI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Nome_Enfermeiro, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Label_Hora_Chamada, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Label_Hora_Evento, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Label_Hora_Chegada_EEMI)
+                    .addComponent(Label_PCR, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
-                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Label_Hora_Chamada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Label_Hora_Chegada_EEMI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Label_Hora_Evento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dataEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chamadaData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chegadaData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Data_Hora_Evento, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                            .addComponent(Data_Hora_Chamada)
-                            .addComponent(Data_Hora_Chegada)))
-                    .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
-                        .addComponent(Label_PCR, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(PCR_S, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                        .addComponent(PCR_N, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hora_Chamada, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hora_Evento, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hora_Chegada, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(pcr_box, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(383, 383, 383))
         );
         jDesktopPaneEventoLayout.setVerticalGroup(
             jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
-                .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
                         .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Label_Local)
-                            .addComponent(Local_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Local_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_Hora_Evento))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Label_Quem_Ativa)
-                            .addComponent(Quem_Ativa_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Quem_Ativa_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_Hora_Chamada))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Label_Medico)
-                            .addComponent(Nome_Medico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Nome_Medico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_Hora_Chegada_EEMI))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Label_Enfermeiro_EEMI)
-                            .addComponent(Nome_Enfermeiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Nome_Enfermeiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_PCR)))
                     .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
                         .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Label_Hora_Evento)
-                            .addComponent(Data_Hora_Evento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(hora_Evento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dataEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Label_Hora_Chamada)
-                            .addComponent(Data_Hora_Chamada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(hora_Chamada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chamadaData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Label_Hora_Chegada_EEMI)
-                            .addComponent(Data_Hora_Chegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(hora_Chegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chegadaData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Label_PCR)
-                            .addComponent(PCR_S)
-                            .addComponent(PCR_N))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(pcr_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(4, 4, 4))
         );
 
         Label_Hora_Chamada.getAccessibleContext().setAccessibleDescription("");
@@ -472,7 +446,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         guardarButton.setBackground(new java.awt.Color(0, 240, 0));
         guardarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         guardarButton.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        guardarButton.setLabel("Guardar");
+        guardarButton.setLabel("Seguinte");
         guardarButton.setMinimumSize(new java.awt.Dimension(34, 24));
         guardarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -480,201 +454,43 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             }
         });
 
-        Detalhes_Evento.setBackground(getBackground());
-        Detalhes_Evento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalhes do Evento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 10))); // NOI18N
-        Detalhes_Evento.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-
-        PainelVitima1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-
-        Label_Resposta_Motivo_PCR.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Label_Resposta_Motivo_PCR.setText("Motivo PCR:");
-
-        Label_Resposta_PCR.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Label_Resposta_PCR.setText("PCR:");
-
-        Label_Resposta_Equipa_Local_SAV.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Label_Resposta_Equipa_Local_SAV.setText("Equipa Local realiza SAV:");
-
-        Label_Resposta_EEMI_SAV.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Label_Resposta_EEMI_SAV.setText("EEMI realiza SAV:");
-
-        Label_Resposta_Hora_Inicio_SAV.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Label_Resposta_Hora_Inicio_SAV.setText("Hora de início de SAV:");
-
-        Label_Resposta_Procedimentos_SAV.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Label_Resposta_Procedimentos_SAV.setText("Procedimentos SAV:");
-
-        Label_Resposta_Hora_Choque.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Label_Resposta_Hora_Choque.setText("Hora Primeiro Choque:");
-
-        Label_Resposta_RCE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Label_Resposta_RCE.setText("RCE");
-
-        Label_Resposta_RCE_Hora.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Label_Resposta_RCE_Hora.setText("Hora RCE");
-
-        javax.swing.GroupLayout PainelVitima1Layout = new javax.swing.GroupLayout(PainelVitima1);
-        PainelVitima1.setLayout(PainelVitima1Layout);
-        PainelVitima1Layout.setHorizontalGroup(
-            PainelVitima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelVitima1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PainelVitima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PainelVitima1Layout.createSequentialGroup()
-                        .addGroup(PainelVitima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Label_Resposta_EEMI_SAV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Label_Resposta_Equipa_Local_SAV, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Label_Resposta_Motivo_PCR, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Label_Resposta_PCR, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(Label_Resposta_Hora_Inicio_SAV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Label_Resposta_Procedimentos_SAV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Label_Resposta_Hora_Choque, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Label_Resposta_RCE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Label_Resposta_RCE_Hora, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        PainelVitima1Layout.setVerticalGroup(
-            PainelVitima1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelVitima1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Label_Resposta_PCR)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Label_Resposta_Motivo_PCR)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Label_Resposta_Equipa_Local_SAV)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Label_Resposta_EEMI_SAV)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Label_Resposta_Hora_Inicio_SAV)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Label_Resposta_Procedimentos_SAV)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Label_Resposta_Hora_Choque)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Label_Resposta_RCE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Label_Resposta_RCE_Hora)
-                .addContainerGap())
-        );
-
-        Label_Resposta_PCR.getAccessibleContext().setAccessibleName("PCR:");
-
-        Label_Resposta_Destino_Servico.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Label_Resposta_Destino_Servico.setText("Serviço Destino:");
-
-        Label_Resposta_Destino_Instituicao.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Label_Resposta_Destino_Instituicao.setText("Instituição Destino:");
-
-        Label_Resposta_Motivo_Nao_SAV.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Label_Resposta_Motivo_Nao_SAV.setText("Motivo Nao SAV:");
-
-        Label_Resposta_Hora_Suspencao_SAV.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Label_Resposta_Hora_Suspencao_SAV.setText("Sem RCE: Hora Suspenção SAV:");
-
-        jText_PCR.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jText_PCR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jText_PCRActionPerformed(evt);
-            }
-        });
-
-        jTextMotivo_PCR.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jTextMotivo_PCR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextMotivo_PCRActionPerformed(evt);
-            }
-        });
-
-        Detalhes_Evento.setLayer(PainelVitima1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Detalhes_Evento.setLayer(Label_Resposta_Destino_Servico, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Detalhes_Evento.setLayer(Label_Resposta_Destino_Instituicao, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Detalhes_Evento.setLayer(Label_Resposta_Motivo_Nao_SAV, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Detalhes_Evento.setLayer(Label_Resposta_Hora_Suspencao_SAV, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Detalhes_Evento.setLayer(jText_PCR, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Detalhes_Evento.setLayer(jTextMotivo_PCR, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout Detalhes_EventoLayout = new javax.swing.GroupLayout(Detalhes_Evento);
-        Detalhes_Evento.setLayout(Detalhes_EventoLayout);
-        Detalhes_EventoLayout.setHorizontalGroup(
-            Detalhes_EventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Detalhes_EventoLayout.createSequentialGroup()
-                .addComponent(PainelVitima1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(Detalhes_EventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Detalhes_EventoLayout.createSequentialGroup()
-                        .addGap(201, 201, 201)
-                        .addGroup(Detalhes_EventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Label_Resposta_Destino_Servico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Label_Resposta_Destino_Instituicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Label_Resposta_Motivo_Nao_SAV, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Label_Resposta_Hora_Suspencao_SAV, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(455, 455, 455))
-                    .addGroup(Detalhes_EventoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(Detalhes_EventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextMotivo_PCR, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jText_PCR, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        Detalhes_EventoLayout.setVerticalGroup(
-            Detalhes_EventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Detalhes_EventoLayout.createSequentialGroup()
-                .addGroup(Detalhes_EventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Detalhes_EventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(PainelVitima1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(Detalhes_EventoLayout.createSequentialGroup()
-                            .addComponent(Label_Resposta_Motivo_Nao_SAV)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Label_Resposta_Hora_Suspencao_SAV)
-                            .addGap(45, 45, 45)
-                            .addComponent(Label_Resposta_Destino_Servico)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Label_Resposta_Destino_Instituicao)))
-                    .addGroup(Detalhes_EventoLayout.createSequentialGroup()
-                        .addComponent(jText_PCR, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextMotivo_PCR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Titulo_NovoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(Detalhes_Evento)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jDesktopPaneEvento)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jDesktopPlane_Vitima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(guardarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(12, 12, 12)
-                                    .addComponent(validationString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jDesktopPaneEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(Titulo_NovoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 1018, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(455, 455, 455)
+                        .addComponent(guardarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jDesktopPlane_Vitima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(validationString, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(378, 378, 378))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Titulo_NovoEvento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jDesktopPlane_Vitima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(validationString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDesktopPaneEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jDesktopPlane_Vitima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Detalhes_Evento)
+                .addComponent(jDesktopPaneEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validationString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Sair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(guardarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -685,13 +501,40 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-// Definicao Variaveis
+    public static boolean isValidFullName(String name) {
+        // Check if the name matches the pattern
+        Matcher matcher = FULL_NAME_PATTERN.matcher(name);
+        return matcher.matches();
+    }
+
+    public static boolean isValidInteger(String str) {
+        // Regular expression to match an integer (positive or negative)
+        return str.matches("\\d+");
+    }
     
-    int PCR_S_N;
-    int EEMI_SAV;
-    int RCE;
+    public static boolean isValidTime(String time) {
+        // Regular expression to match time in HH:mm format
+        String timePattern = "^([01]?[0-9]|2[0-3]):[0-5][0-9]$";
+        return time.matches(timePattern);
+    }
     
+        public static String createOracleTimestamp(String date, String time) {
+        // Define the input format for date and time
+        DateTimeFormatter inputDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter inputTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        
+        // Parse the date and time strings
+        LocalDateTime dateTime = LocalDateTime.parse(date + "T" + time + ":00");
+        
+        // Define the output format for Oracle TIMESTAMP
+        DateTimeFormatter oracleFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        
+        // Format the LocalDateTime to the desired Oracle TIMESTAMP format
+        return dateTime.format(oracleFormatter);
+    }
+
 // Combobox Novo evento    
+
     private void setupComboBox() {
         Local_box.addItem("-");
         Quem_Ativa_box.addItem("-");
@@ -716,27 +559,14 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         for (Medico medico : medicos) {
             Nome_Medico.addItem(medico.getNOME_MEDICO());
         }
-
-        
-        
-        
     }
 
 
-    
-
-    
-    
-    
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
         // TODO add your handling code here:
         new Menu_1().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_SairActionPerformed
-
-    private void Data_Admissao_HospitalarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Data_Admissao_HospitalarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Data_Admissao_HospitalarActionPerformed
 
     private void N_EpisodioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_N_EpisodioActionPerformed
         // TODO add your handling code here:
@@ -745,10 +575,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
     private void GeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeneroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GeneroActionPerformed
-
-    private void Data_NascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Data_NascimentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Data_NascimentoActionPerformed
 
     private void N_ProcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_N_ProcessoActionPerformed
         // TODO add your handling code here:
@@ -770,54 +596,85 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Nome_MedicoActionPerformed
 
-    private void Data_Hora_EventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Data_Hora_EventoActionPerformed
+    private void hora_EventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hora_EventoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Data_Hora_EventoActionPerformed
+    }//GEN-LAST:event_hora_EventoActionPerformed
 
-    private void Data_Hora_ChamadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Data_Hora_ChamadaActionPerformed
+    private void hora_ChamadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hora_ChamadaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Data_Hora_ChamadaActionPerformed
+    }//GEN-LAST:event_hora_ChamadaActionPerformed
 
-    private void Data_Hora_ChegadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Data_Hora_ChegadaActionPerformed
+    private void hora_ChegadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hora_ChegadaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Data_Hora_ChegadaActionPerformed
+    }//GEN-LAST:event_hora_ChegadaActionPerformed
 
     private void Nome_EnfermeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nome_EnfermeiroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Nome_EnfermeiroActionPerformed
-
-    private void PCR_SActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PCR_SActionPerformed
-        // TODO add your handling code here:
-        PCR_S_N=1;
-        jText_PCR.setText("Sim");
-        // Cria uma instância do Menu_PCR
-        Menu_PCR menuPCR = new Menu_PCR();
-
-        // Configura o JFrame para fechar apenas o Menu_PCR ao ser fechado
-        menuPCR.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        // Torna o Menu_PCR visível
-        menuPCR.setVisible(true);
-    }//GEN-LAST:event_PCR_SActionPerformed
-
-    private void PCR_NActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PCR_NActionPerformed
-        // TODO add your handling code here:
-        PCR_S_N=0;
-        jText_PCR.setText("Nao");
-        
-        // Cria uma instância do Menu_Destino
-        Menu_Destino menuDestino = new Menu_Destino();
-
-        // Configura o JFrame para fechar apenas o Menu_Destino ao ser fechado
-        menuDestino.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        // Torna o Menu_Destino visível
-        menuDestino.setVisible(true);
-
-
-    }//GEN-LAST:event_PCR_NActionPerformed
     private boolean validarCampos() {
+        System.out.println("Data: "+ data_Nascimento.getDateStringOrEmptyString());
+        if (!isValidFullName(Nome_Vitima.getText())) {
+            validationString.setText("Nome do paciente invalido");
+            validationString.setForeground(Color.red);
+            Nome_Vitima.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            Nome_Vitima.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
 
+        
+        if (!isValidInteger(N_Processo.getText())) {
+            validationString.setText("N_Processo invalido");
+            validationString.setForeground(Color.red);
+            N_Processo.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            N_Processo.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+        
+        if (!isValidInteger(N_Episodio.getText())) {
+            validationString.setText("N_episodio invalido");
+            validationString.setForeground(Color.red);
+            N_Episodio.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            N_Episodio.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+        
+                if (!isValidInteger(N_Episodio.getText())) {
+            validationString.setText("N_episodio invalido");
+            validationString.setForeground(Color.red);
+            N_Episodio.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            N_Episodio.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+                
+        if ("".equals(data_Nascimento.getDateStringOrEmptyString())) {
+            validationString.setText("Escolha data de nascimento");
+            validationString.setForeground(Color.red);
+            data_Nascimento.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            data_Nascimento.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+        
+        if ("".equals(dataAdmicaoHospitalar.getDateStringOrEmptyString())) {
+            validationString.setText("Escolha data de admissão hospitalar");
+            validationString.setForeground(Color.red);
+            dataAdmicaoHospitalar.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            dataAdmicaoHospitalar.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+        
+        
         if ("-".equals(Local_box.getSelectedItem().toString())) {
             validationString.setText("Escolha o Local");
             validationString.setForeground(Color.red);
@@ -836,7 +693,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             Quem_Ativa_box.setBorder(new LineBorder(Color.green));
             validationString.setText("");
         }
-        
+
         if ("-".equals(Nome_Medico.getSelectedItem().toString())) {
             validationString.setText("Escolha o Medico");
             validationString.setForeground(Color.red);
@@ -850,26 +707,23 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             validationString.setText("Escolha o Enfermeiro");
             validationString.setForeground(Color.red);
             Nome_Enfermeiro.setBorder(new LineBorder(Color.RED));
-           return false;
+            return false;
         } else {
             Nome_Enfermeiro.setBorder(new LineBorder(Color.green));
             validationString.setText("");
         }
-                
+
         return true;
     }
+
+
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
         boolean camposValidos = validarCampos();
     }//GEN-LAST:event_guardarButtonActionPerformed
 
-    private void jText_PCRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jText_PCRActionPerformed
+    private void pcr_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcr_boxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jText_PCRActionPerformed
-
-    private void jTextMotivo_PCRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextMotivo_PCRActionPerformed
-        // TODO add your handling code here:
-    
-    }//GEN-LAST:event_jTextMotivo_PCRActionPerformed
+    }//GEN-LAST:event_pcr_boxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -908,12 +762,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Data_Admissao_Hospitalar;
-    private javax.swing.JFormattedTextField Data_Hora_Chamada;
-    private javax.swing.JFormattedTextField Data_Hora_Chegada;
-    private javax.swing.JFormattedTextField Data_Hora_Evento;
-    private javax.swing.JTextField Data_Nascimento;
-    private javax.swing.JDesktopPane Detalhes_Evento;
     private javax.swing.JComboBox<String> Genero;
     private javax.swing.JLabel Label_D_Admissao_Hospitalar;
     private javax.swing.JLabel Label_D_Nascimento;
@@ -929,38 +777,28 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
     private javax.swing.JLabel Label_PCR;
     private javax.swing.JLabel Label_Processo;
     private javax.swing.JLabel Label_Quem_Ativa;
-    private javax.swing.JLabel Label_Resposta_Destino_Instituicao;
-    private javax.swing.JLabel Label_Resposta_Destino_Servico;
-    private javax.swing.JLabel Label_Resposta_EEMI_SAV;
-    private javax.swing.JLabel Label_Resposta_Equipa_Local_SAV;
-    private javax.swing.JLabel Label_Resposta_Hora_Choque;
-    private javax.swing.JLabel Label_Resposta_Hora_Inicio_SAV;
-    private javax.swing.JLabel Label_Resposta_Hora_Suspencao_SAV;
-    private javax.swing.JLabel Label_Resposta_Motivo_Nao_SAV;
-    private javax.swing.JLabel Label_Resposta_Motivo_PCR;
-    private javax.swing.JLabel Label_Resposta_PCR;
-    private javax.swing.JLabel Label_Resposta_Procedimentos_SAV;
-    private javax.swing.JLabel Label_Resposta_RCE;
-    private javax.swing.JLabel Label_Resposta_RCE_Hora;
     private javax.swing.JComboBox<String> Local_box;
     private javax.swing.JTextField N_Episodio;
     private javax.swing.JTextField N_Processo;
     private javax.swing.JComboBox<String> Nome_Enfermeiro;
     private javax.swing.JComboBox<String> Nome_Medico;
     private javax.swing.JTextField Nome_Vitima;
-    private javax.swing.JButton PCR_N;
-    private javax.swing.JButton PCR_S;
     private javax.swing.JPanel PainelVitima;
-    private javax.swing.JPanel PainelVitima1;
     private javax.swing.JComboBox<String> Quem_Ativa_box;
     private java.awt.Button Sair;
     private javax.swing.JLabel Titulo_NovoEvento;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private com.github.lgooddatepicker.components.DatePicker chamadaData;
+    private com.github.lgooddatepicker.components.DatePicker chegadaData;
+    private com.github.lgooddatepicker.components.DatePicker dataAdmicaoHospitalar;
+    private com.github.lgooddatepicker.components.DatePicker dataEvento;
+    private com.github.lgooddatepicker.components.DatePicker data_Nascimento;
     private java.awt.Button guardarButton;
+    private javax.swing.JFormattedTextField hora_Chamada;
+    private javax.swing.JFormattedTextField hora_Chegada;
+    private javax.swing.JFormattedTextField hora_Evento;
     private javax.swing.JDesktopPane jDesktopPaneEvento;
     private javax.swing.JDesktopPane jDesktopPlane_Vitima;
-    private javax.swing.JTextField jTextMotivo_PCR;
-    private javax.swing.JTextField jText_PCR;
+    private javax.swing.JComboBox<String> pcr_box;
     private java.awt.Label validationString;
     // End of variables declaration//GEN-END:variables
 }

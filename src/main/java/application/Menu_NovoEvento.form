@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
-    </Component>
-  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -27,32 +23,33 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="Titulo_NovoEvento" min="-2" pref="902" max="-2" attributes="0"/>
-                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="Detalhes_Evento" max="32767" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jDesktopPaneEvento" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="jDesktopPlane_Vitima" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="guardarButton" min="-2" pref="83" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="Sair" min="-2" pref="97" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Component id="validationString" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                      <Component id="jDesktopPaneEvento" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="Titulo_NovoEvento" min="-2" pref="1018" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="455" max="-2" attributes="0"/>
+                      <Component id="guardarButton" min="-2" pref="83" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="Sair" min="-2" pref="97" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                      <Component id="jDesktopPlane_Vitima" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="validationString" min="-2" pref="355" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="378" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,17 +58,12 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="Titulo_NovoEvento" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jDesktopPlane_Vitima" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="validationString" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jDesktopPaneEvento" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jDesktopPlane_Vitima" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="Detalhes_Evento" max="32767" attributes="0"/>
+              <Component id="jDesktopPaneEvento" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="validationString" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="Sair" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="guardarButton" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
@@ -135,10 +127,10 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="PainelVitima" min="-2" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="PainelVitima" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -168,31 +160,32 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Nome_Vitima" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="N_Episodio" min="-2" pref="76" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Label_D_Admissao_Hospitalar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Data_Admissao_Hospitalar" min="-2" pref="78" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="N_Episodio" min="-2" pref="76" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="Label_D_Admissao_Hospitalar" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="N_Processo" min="-2" pref="76" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="Label_D_Nascimento" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="Data_Nascimento" min="-2" pref="78" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="Nome_Vitima" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Label_Genero" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="Genero" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="data_Nascimento" pref="239" max="32767" attributes="0"/>
+                                  <Component id="dataAdmicaoHospitalar" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="281" max="32767" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="Label_Genero" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="Genero" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -211,14 +204,14 @@
                           <Component id="Label_Processo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="N_Processo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Label_D_Nascimento" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Data_Nascimento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="data_Nascimento" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="N_Episodio" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Label_Episódio" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Label_D_Admissao_Hospitalar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Data_Admissao_Hospitalar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="dataAdmicaoHospitalar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -294,16 +287,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="N_ProcessoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="Data_Nascimento">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Data_NascimentoActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JTextField" name="N_Episodio">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -312,16 +295,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="N_EpisodioActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JTextField" name="Data_Admissao_Hospitalar">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Data_Admissao_HospitalarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="Genero">
@@ -345,6 +318,10 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="com.github.lgooddatepicker.components.DatePicker" name="data_Nascimento">
+            </Component>
+            <Component class="com.github.lgooddatepicker.components.DatePicker" name="dataAdmicaoHospitalar">
             </Component>
           </SubComponents>
         </Container>
@@ -370,104 +347,110 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="Label_Local" min="-2" pref="71" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Local_box" min="-2" pref="171" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="Label_Quem_Ativa" min="-2" pref="71" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="Quem_Ativa_box" min="-2" pref="171" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="Label_Medico" min="-2" pref="71" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="Nome_Medico" min="-2" pref="171" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="Label_Local" min="-2" pref="71" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="Local_box" min="-2" pref="171" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="Label_Quem_Ativa" min="-2" pref="71" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="Quem_Ativa_box" min="-2" pref="171" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="Label_Medico" min="-2" pref="71" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="Nome_Enfermeiro" min="-2" pref="171" max="-2" attributes="0"/>
+                                      <Component id="Nome_Medico" min="-2" pref="171" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Component id="Label_Enfermeiro_EEMI" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Nome_Enfermeiro" min="-2" pref="171" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="Label_Hora_Chamada" alignment="0" max="32767" attributes="0"/>
-                              <Component id="Label_Hora_Chegada_EEMI" alignment="1" max="32767" attributes="0"/>
-                              <Component id="Label_Hora_Evento" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="Label_Hora_Chamada" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="Label_Hora_Evento" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="Label_Hora_Chegada_EEMI" min="-2" max="-2" attributes="0"/>
+                      <Component id="Label_PCR" min="-2" pref="34" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="dataEvento" min="-2" max="-2" attributes="0"/>
+                              <Component id="chamadaData" min="-2" max="-2" attributes="0"/>
+                              <Component id="chegadaData" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="Data_Hora_Evento" pref="80" max="32767" attributes="0"/>
-                              <Component id="Data_Hora_Chamada" alignment="0" max="32767" attributes="0"/>
-                              <Component id="Data_Hora_Chegada" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="hora_Chamada" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Component id="hora_Evento" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Component id="hora_Chegada" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="Label_PCR" min="-2" pref="34" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="PCR_S" min="-2" pref="57" max="-2" attributes="0"/>
-                          <EmptySpace pref="20" max="32767" attributes="0"/>
-                          <Component id="PCR_N" min="-2" pref="53" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="pcr_box" min="-2" pref="171" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="383" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="Label_Local" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Local_box" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Label_Hora_Evento" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="Label_Quem_Ativa" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Quem_Ativa_box" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Label_Hora_Chamada" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="Label_Medico" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Nome_Medico" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Label_Hora_Chegada_EEMI" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Label_Enfermeiro_EEMI" min="-2" max="-2" attributes="0"/>
-                              <Component id="Nome_Enfermeiro" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Label_Enfermeiro_EEMI" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Nome_Enfermeiro" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Label_PCR" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Label_Hora_Evento" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Data_Hora_Evento" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hora_Evento" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="dataEvento" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Label_Hora_Chamada" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Data_Hora_Chamada" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hora_Chamada" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="chamadaData" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Label_Hora_Chegada_EEMI" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Data_Hora_Chegada" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hora_Chegada" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="chegadaData" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Label_PCR" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="PCR_S" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="PCR_N" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="pcr_box" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -539,34 +522,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="PCR?:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="PCR_S">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f2" green="f2" red="f2" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Sim"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PCR_SActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="PCR_N">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f2" green="f2" red="f2" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Nao"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PCR_NActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="Local_box">
           <Properties>
@@ -647,7 +602,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="Data_Hora_Chegada">
+        <Component class="javax.swing.JFormattedTextField" name="hora_Chegada">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format subtype="1" type="2"/>
@@ -658,10 +613,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Data_Hora_ChegadaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hora_ChegadaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="Data_Hora_Chamada">
+        <Component class="javax.swing.JFormattedTextField" name="hora_Chamada">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format subtype="1" type="2"/>
@@ -672,10 +627,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Data_Hora_ChamadaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hora_ChamadaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="Data_Hora_Evento">
+        <Component class="javax.swing.JFormattedTextField" name="hora_Evento">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format subtype="1" type="2"/>
@@ -686,8 +641,37 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Data_Hora_EventoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hora_EventoActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="pcr_box">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f2" green="f2" red="f2" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="10" style="0"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="-"/>
+                <StringItem index="1" value="sim"/>
+                <StringItem index="2" value="n&#xe3;o"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pcr_boxActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="com.github.lgooddatepicker.components.DatePicker" name="dataEvento">
+        </Component>
+        <Component class="com.github.lgooddatepicker.components.DatePicker" name="chamadaData">
+        </Component>
+        <Component class="com.github.lgooddatepicker.components.DatePicker" name="chegadaData">
         </Component>
       </SubComponents>
     </Container>
@@ -703,7 +687,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="10" style="0"/>
         </Property>
-        <Property name="label" type="java.lang.String" value="Guardar"/>
+        <Property name="label" type="java.lang.String" value="Seguinte"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[34, 24]"/>
         </Property>
@@ -720,268 +704,5 @@
     </Component>
     <Component class="java.awt.Label" name="validationString">
     </Component>
-    <Container class="javax.swing.JDesktopPane" name="Detalhes_Evento">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection component="Form" name="background" type="property"/>
-        </Property>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Detalhes do Evento">
-              <Font PropertyName="font" name="Segoe UI" size="10" style="1"/>
-            </TitledBorder>
-          </Border>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="10" style="1"/>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="PainelVitima1" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Label_Resposta_Destino_Servico" max="32767" attributes="0"/>
-                              <Component id="Label_Resposta_Destino_Instituicao" max="32767" attributes="0"/>
-                              <Component id="Label_Resposta_Motivo_Nao_SAV" alignment="1" max="32767" attributes="0"/>
-                              <Component id="Label_Resposta_Hora_Suspencao_SAV" alignment="1" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="455" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextMotivo_PCR" min="-2" pref="171" max="-2" attributes="0"/>
-                              <Component id="jText_PCR" min="-2" pref="171" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="PainelVitima1" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="Label_Resposta_Motivo_Nao_SAV" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Label_Resposta_Hora_Suspencao_SAV" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Component id="Label_Resposta_Destino_Servico" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Label_Resposta_Destino_Instituicao" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jText_PCR" min="-2" pref="20" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextMotivo_PCR" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Container class="javax.swing.JPanel" name="PainelVitima1">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="1"/>
-            </Property>
-          </Properties>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="Label_Resposta_EEMI_SAV" max="32767" attributes="0"/>
-                                  <Component id="Label_Resposta_Equipa_Local_SAV" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Label_Resposta_Motivo_PCR" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Label_Resposta_PCR" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="Label_Resposta_Hora_Inicio_SAV" alignment="0" max="32767" attributes="0"/>
-                          <Component id="Label_Resposta_Procedimentos_SAV" alignment="0" max="32767" attributes="0"/>
-                          <Component id="Label_Resposta_Hora_Choque" alignment="1" max="32767" attributes="0"/>
-                          <Component id="Label_Resposta_RCE" alignment="0" max="32767" attributes="0"/>
-                          <Component id="Label_Resposta_RCE_Hora" alignment="1" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Label_Resposta_PCR" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Label_Resposta_Motivo_PCR" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Label_Resposta_Equipa_Local_SAV" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Label_Resposta_EEMI_SAV" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Label_Resposta_Hora_Inicio_SAV" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Label_Resposta_Procedimentos_SAV" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Label_Resposta_Hora_Choque" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Label_Resposta_RCE" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Label_Resposta_RCE_Hora" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="Label_Resposta_Motivo_PCR">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Motivo PCR:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Label_Resposta_PCR">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="PCR:"/>
-              </Properties>
-              <AccessibilityProperties>
-                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="PCR:"/>
-              </AccessibilityProperties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Label_Resposta_Equipa_Local_SAV">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Equipa Local realiza SAV:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Label_Resposta_EEMI_SAV">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="EEMI realiza SAV:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Label_Resposta_Hora_Inicio_SAV">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Hora de in&#xed;cio de SAV:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Label_Resposta_Procedimentos_SAV">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Procedimentos SAV:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Label_Resposta_Hora_Choque">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Hora Primeiro Choque:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Label_Resposta_RCE">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="RCE"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Label_Resposta_RCE_Hora">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Hora RCE"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Component class="javax.swing.JLabel" name="Label_Resposta_Destino_Servico">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Servi&#xe7;o Destino:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="Label_Resposta_Destino_Instituicao">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Institui&#xe7;&#xe3;o Destino:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="Label_Resposta_Motivo_Nao_SAV">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Motivo Nao SAV:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="Label_Resposta_Hora_Suspencao_SAV">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Sem RCE: Hora Suspen&#xe7;&#xe3;o SAV:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jText_PCR">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jText_PCRActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextMotivo_PCR">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextMotivo_PCRActionPerformed"/>
-          </Events>
-        </Component>
-      </SubComponents>
-    </Container>
   </SubComponents>
 </Form>
