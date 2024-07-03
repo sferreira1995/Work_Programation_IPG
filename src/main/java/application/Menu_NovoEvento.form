@@ -63,7 +63,7 @@
               <Component id="jDesktopPaneEvento" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="validationString" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="Sair" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="guardarButton" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
@@ -76,15 +76,15 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="Titulo_NovoEvento">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="24" style="0"/>
-        </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="EEMI Cova da Beira - Novo Evento"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
             <BevelBorder/>
           </Border>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="24" style="0"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
@@ -221,50 +221,50 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="Label_Processo">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Processo:"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="10" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Processo:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Label_Nome">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Nome:"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="10" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Nome:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Label_D_Nascimento">
               <Properties>
+                <Property name="text" type="java.lang.String" value="D.Nascimento"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="10" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="D.Nascimento"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Label_Genero">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Genero"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="10" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Genero"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Label_Epis&#xf3;dio">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Epis&#xf3;dio:"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="10" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Epis&#xf3;dio:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Label_D_Admissao_Hospitalar">
               <Properties>
+                <Property name="text" type="java.lang.String" value="D.Admiss&#xe3;o Hospitalar"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="10" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="D.Admiss&#xe3;o Hospitalar"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="Nome_Vitima">
@@ -299,17 +299,17 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="Genero">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="f2" green="f2" red="f2" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
                     <StringItem index="0" value="Masculino"/>
                     <StringItem index="1" value="Feminino"/>
                   </StringArray>
+                </Property>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f2" green="f2" red="f2" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="10" style="0"/>
                 </Property>
               </Properties>
               <Events>
@@ -386,8 +386,8 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="dataEvento" min="-2" max="-2" attributes="0"/>
-                              <Component id="chamadaData" min="-2" max="-2" attributes="0"/>
-                              <Component id="chegadaData" min="-2" max="-2" attributes="0"/>
+                              <Component id="dataChamada" min="-2" max="-2" attributes="0"/>
+                              <Component id="dataChegada" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -405,52 +405,48 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Label_Local" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Local_box" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Label_Hora_Evento" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Label_Quem_Ativa" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Quem_Ativa_box" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Label_Hora_Chamada" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Label_Medico" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Nome_Medico" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Label_Hora_Chegada_EEMI" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Label_Enfermeiro_EEMI" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Nome_Enfermeiro" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Label_PCR" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="hora_Evento" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="dataEvento" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="hora_Chamada" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="chamadaData" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="hora_Chegada" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="chegadaData" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="pcr_box" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Label_Local" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Local_box" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Label_Hora_Evento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Label_Quem_Ativa" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Quem_Ativa_box" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Label_Hora_Chamada" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Label_Medico" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Nome_Medico" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Label_Hora_Chegada_EEMI" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Label_Enfermeiro_EEMI" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Nome_Enfermeiro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Label_PCR" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="7" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="hora_Evento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dataEvento" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="hora_Chamada" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dataChamada" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="hora_Chegada" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dataChegada" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="9" max="32767" attributes="0"/>
+                  <Component id="pcr_box" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -458,18 +454,18 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="Label_Hora_Evento">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Hora Evento:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Hora Evento:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Label_Hora_Chamada">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Hora Chamada:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Hora Chamada:"/>
           </Properties>
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
@@ -477,62 +473,62 @@
         </Component>
         <Component class="javax.swing.JLabel" name="Label_Hora_Chegada_EEMI">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Hora Chegada EEMI:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Hora Chegada EEMI:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Label_Local">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Local:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Local:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Label_Medico">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Medico EEMI:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Medico EEMI:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Label_Enfermeiro_EEMI">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Enfermeiro EEMI:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Enfermeiro EEMI:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Label_Quem_Ativa">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Quem ativa:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Quem ativa:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Label_PCR">
           <Properties>
+            <Property name="text" type="java.lang.String" value="PCR?:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="PCR?:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="Local_box">
           <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f2" green="f2" red="f2" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
             </Property>
           </Properties>
           <AccessibilityProperties>
@@ -607,7 +603,7 @@
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format subtype="1" type="2"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="00:00"/>
+            <Property name="text" type="java.lang.String" value="HH:mm"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
@@ -621,7 +617,7 @@
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format subtype="1" type="2"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="00:00"/>
+            <Property name="text" type="java.lang.String" value="HH:mm"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
@@ -635,7 +631,7 @@
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format subtype="1" type="2"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="00:00"/>
+            <Property name="text" type="java.lang.String" value="HH:mm"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
@@ -646,18 +642,18 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="pcr_box">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f2" green="f2" red="f2" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
                 <StringItem index="0" value="-"/>
                 <StringItem index="1" value="sim"/>
                 <StringItem index="2" value="n&#xe3;o"/>
               </StringArray>
+            </Property>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f2" green="f2" red="f2" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="10" style="0"/>
             </Property>
           </Properties>
           <Events>
@@ -669,9 +665,9 @@
         </Component>
         <Component class="com.github.lgooddatepicker.components.DatePicker" name="dataEvento">
         </Component>
-        <Component class="com.github.lgooddatepicker.components.DatePicker" name="chamadaData">
+        <Component class="com.github.lgooddatepicker.components.DatePicker" name="dataChamada">
         </Component>
-        <Component class="com.github.lgooddatepicker.components.DatePicker" name="chegadaData">
+        <Component class="com.github.lgooddatepicker.components.DatePicker" name="dataChegada">
         </Component>
       </SubComponents>
     </Container>

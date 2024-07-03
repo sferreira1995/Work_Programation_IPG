@@ -37,15 +37,18 @@ public class Menu_PCR extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        textArea1 = new java.awt.TextArea();
         jDesktopPanePCR1 = new javax.swing.JDesktopPane();
         Label_Motivo_PCR1 = new javax.swing.JLabel();
         Label_Equipa_Local_SAV1 = new javax.swing.JLabel();
         Labe_EEMI_SAV = new javax.swing.JLabel();
-        EEMI_SAV_S = new javax.swing.JButton();
-        EEMI_SAV_NAO = new javax.swing.JButton();
         Motivo_box = new javax.swing.JComboBox<>();
         Equipa_Local_SAV = new javax.swing.JComboBox<>();
         PCR_Voltar = new javax.swing.JButton();
+        Equipa_Local_SAV1 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        n_evento = new javax.swing.JLabel();
+        PCR_Voltar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -62,24 +65,6 @@ public class Menu_PCR extends javax.swing.JFrame {
 
         Labe_EEMI_SAV.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Labe_EEMI_SAV.setText("EEMI realiza SAV?");
-
-        EEMI_SAV_S.setBackground(new java.awt.Color(242, 242, 242));
-        EEMI_SAV_S.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        EEMI_SAV_S.setText("Sim");
-        EEMI_SAV_S.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EEMI_SAV_SActionPerformed(evt);
-            }
-        });
-
-        EEMI_SAV_NAO.setBackground(new java.awt.Color(242, 242, 242));
-        EEMI_SAV_NAO.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        EEMI_SAV_NAO.setText("Nao");
-        EEMI_SAV_NAO.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EEMI_SAV_NAOActionPerformed(evt);
-            }
-        });
 
         Motivo_box.setBackground(new java.awt.Color(242, 242, 242));
         Motivo_box.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -107,58 +92,94 @@ public class Menu_PCR extends javax.swing.JFrame {
             }
         });
 
+        Equipa_Local_SAV1.setBackground(new java.awt.Color(242, 242, 242));
+        Equipa_Local_SAV1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        Equipa_Local_SAV1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 - Sim", "0 - Nao", " " }));
+        Equipa_Local_SAV1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Equipa_Local_SAV1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Evento: ");
+
+        n_evento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        PCR_Voltar1.setBackground(new java.awt.Color(242, 242, 242));
+        PCR_Voltar1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        PCR_Voltar1.setText("Seguinte");
+        PCR_Voltar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PCR_Voltar1ActionPerformed(evt);
+            }
+        });
+
         jDesktopPanePCR1.setLayer(Label_Motivo_PCR1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanePCR1.setLayer(Label_Equipa_Local_SAV1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanePCR1.setLayer(Labe_EEMI_SAV, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPanePCR1.setLayer(EEMI_SAV_S, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPanePCR1.setLayer(EEMI_SAV_NAO, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanePCR1.setLayer(Motivo_box, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanePCR1.setLayer(Equipa_Local_SAV, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanePCR1.setLayer(PCR_Voltar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPanePCR1.setLayer(Equipa_Local_SAV1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPanePCR1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPanePCR1.setLayer(n_evento, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPanePCR1.setLayer(PCR_Voltar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPanePCR1Layout = new javax.swing.GroupLayout(jDesktopPanePCR1);
         jDesktopPanePCR1.setLayout(jDesktopPanePCR1Layout);
         jDesktopPanePCR1Layout.setHorizontalGroup(
             jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
-                            .addComponent(Label_Motivo_PCR1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Motivo_box, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
-                            .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(Label_Equipa_Local_SAV1)
-                                .addComponent(Labe_EEMI_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPanePCR1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(PCR_Voltar1)
+                        .addGap(18, 18, 18)
+                        .addComponent(PCR_Voltar))
+                    .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
+                        .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(Equipa_Local_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
-                                    .addComponent(EEMI_SAV_S, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(EEMI_SAV_NAO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addComponent(PCR_Voltar, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Label_Motivo_PCR1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Label_Equipa_Local_SAV1))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Motivo_box, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Equipa_Local_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(n_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
+                                    .addComponent(Labe_EEMI_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Equipa_Local_SAV1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 88, Short.MAX_VALUE))))
         );
         jDesktopPanePCR1Layout.setVerticalGroup(
             jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(n_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Label_Motivo_PCR1)
                     .addComponent(Motivo_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Equipa_Local_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Label_Equipa_Local_SAV1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Label_Equipa_Local_SAV1)
-                    .addComponent(Equipa_Local_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EEMI_SAV_NAO)
-                    .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(EEMI_SAV_S)
-                        .addComponent(Labe_EEMI_SAV)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(PCR_Voltar)
+                .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Labe_EEMI_SAV)
+                    .addComponent(Equipa_Local_SAV1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PCR_Voltar)
+                    .addComponent(PCR_Voltar1))
                 .addContainerGap())
         );
 
@@ -168,17 +189,42 @@ public class Menu_PCR extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPanePCR1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jDesktopPanePCR1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 4, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jDesktopPanePCR1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Equipa_Local_SAV1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Equipa_Local_SAV1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Equipa_Local_SAV1ActionPerformed
+
+    private void PCR_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PCR_VoltarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+
+    }//GEN-LAST:event_PCR_VoltarActionPerformed
+
+    private void Equipa_Local_SAVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Equipa_Local_SAVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Equipa_Local_SAVActionPerformed
+
+    private void Motivo_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Motivo_boxActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_Motivo_boxActionPerformed
+
+    private void PCR_Voltar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PCR_Voltar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PCR_Voltar1ActionPerformed
 
     private void setupComboBox() {
         Motivo_box.addItem("-");
@@ -194,66 +240,6 @@ public class Menu_PCR extends javax.swing.JFrame {
     }
     
     
-    private void Equipa_Local_SAVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Equipa_Local_SAVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Equipa_Local_SAVActionPerformed
-
-    private void Motivo_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Motivo_boxActionPerformed
-        // TODO add your handling code here:
-       
-       
-       
-    }//GEN-LAST:event_Motivo_boxActionPerformed
-
-    private void EEMI_SAV_NAOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEMI_SAV_NAOActionPerformed
-        // TODO add your handling code here:
-        
-        /* Novo ler morivo
-        Motivo_box.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e){
-            Valor_motivo_pcr=(String) Motivo_box.getSelectedItem();
-        }
-        });fim ler motivo */
-        
-        Menu_EEMI_SAV_NAO menuEEMISavNao = new Menu_EEMI_SAV_NAO();
-    
-        // Configura o JFrame para fechar apenas o Menu_EEMI_SAV_Nao ao ser fechado
-         menuEEMISavNao.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    
-        // Torna o Menu_Destino visível
-         menuEEMISavNao.setVisible(true);
-         this.dispose();
-        
-    }//GEN-LAST:event_EEMI_SAV_NAOActionPerformed
-
-    private void EEMI_SAV_SActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEMI_SAV_SActionPerformed
-        // TODO add your handling code here:
-        
-        /* Novo ler morivo
-        Motivo_box.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e){
-            Valor_motivo_pcr=(String) Motivo_box.getSelectedItem();
-        }
-        });fim ler motivo */
-        
-        
-        Menu_EEMI_SAV_SIM menuEEMISavSim = new Menu_EEMI_SAV_SIM();
-    
-        // Configura o JFrame para fechar apenas o Menu_EEMI_SAV_Nao ao ser fechado
-         menuEEMISavSim.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    
-        // Torna o Menu_Destino visível
-         menuEEMISavSim.setVisible(true);
-               
-         this.dispose();
-    }//GEN-LAST:event_EEMI_SAV_SActionPerformed
-
-    private void PCR_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PCR_VoltarActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        
-    }//GEN-LAST:event_PCR_VoltarActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -290,14 +276,17 @@ public class Menu_PCR extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton EEMI_SAV_NAO;
-    private javax.swing.JButton EEMI_SAV_S;
     private javax.swing.JComboBox<String> Equipa_Local_SAV;
+    private javax.swing.JComboBox<String> Equipa_Local_SAV1;
     private javax.swing.JLabel Labe_EEMI_SAV;
     private javax.swing.JLabel Label_Equipa_Local_SAV1;
     private javax.swing.JLabel Label_Motivo_PCR1;
     private javax.swing.JComboBox<String> Motivo_box;
     private javax.swing.JButton PCR_Voltar;
+    private javax.swing.JButton PCR_Voltar1;
     private javax.swing.JDesktopPane jDesktopPanePCR1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel n_evento;
+    private java.awt.TextArea textArea1;
     // End of variables declaration//GEN-END:variables
 }

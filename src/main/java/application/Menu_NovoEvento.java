@@ -18,9 +18,11 @@ import classesApp.Local;
 import classesApp.Medico;
 import classesApp.Motivo;
 import classesApp.Quem_Ativa;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -82,8 +84,8 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         hora_Evento = new javax.swing.JFormattedTextField();
         pcr_box = new javax.swing.JComboBox<>();
         dataEvento = new com.github.lgooddatepicker.components.DatePicker();
-        chamadaData = new com.github.lgooddatepicker.components.DatePicker();
-        chegadaData = new com.github.lgooddatepicker.components.DatePicker();
+        dataChamada = new com.github.lgooddatepicker.components.DatePicker();
+        dataChegada = new com.github.lgooddatepicker.components.DatePicker();
         guardarButton = new java.awt.Button();
         validationString = new java.awt.Label();
 
@@ -239,8 +241,8 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         Label_Hora_Evento.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Hora_Evento.setText("Hora Evento:");
 
-        Label_Hora_Chamada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Hora_Chamada.setText("Hora Chamada:");
+        Label_Hora_Chamada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
         Label_Hora_Chegada_EEMI.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Hora_Chegada_EEMI.setText("Hora Chegada EEMI:");
@@ -293,7 +295,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         });
 
         hora_Chegada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        hora_Chegada.setText("00:00");
+        hora_Chegada.setText("HH:mm");
         hora_Chegada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         hora_Chegada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,7 +304,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         });
 
         hora_Chamada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        hora_Chamada.setText("00:00");
+        hora_Chamada.setText("HH:mm");
         hora_Chamada.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         hora_Chamada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -311,7 +313,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         });
 
         hora_Evento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        hora_Evento.setText("00:00");
+        hora_Evento.setText("HH:mm");
         hora_Evento.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         hora_Evento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -345,8 +347,8 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         jDesktopPaneEvento.setLayer(hora_Evento, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPaneEvento.setLayer(pcr_box, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPaneEvento.setLayer(dataEvento, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPaneEvento.setLayer(chamadaData, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPaneEvento.setLayer(chegadaData, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPaneEvento.setLayer(dataChamada, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPaneEvento.setLayer(dataChegada, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPaneEventoLayout = new javax.swing.GroupLayout(jDesktopPaneEvento);
         jDesktopPaneEvento.setLayout(jDesktopPaneEventoLayout);
@@ -385,8 +387,8 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
                     .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
                         .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(dataEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chamadaData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chegadaData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dataChamada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dataChegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hora_Chamada, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -398,42 +400,40 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         jDesktopPaneEventoLayout.setVerticalGroup(
             jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
-                .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
-                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Label_Local)
-                            .addComponent(Local_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Label_Hora_Evento))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Label_Quem_Ativa)
-                            .addComponent(Quem_Ativa_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Label_Hora_Chamada))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Label_Medico)
-                            .addComponent(Nome_Medico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Label_Hora_Chegada_EEMI))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Label_Enfermeiro_EEMI)
-                            .addComponent(Nome_Enfermeiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Label_PCR)))
-                    .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
-                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(hora_Evento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dataEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(hora_Chamada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chamadaData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(hora_Chegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chegadaData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pcr_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(4, 4, 4))
+                .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Label_Local)
+                    .addComponent(Local_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Label_Hora_Evento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Label_Quem_Ativa)
+                    .addComponent(Quem_Ativa_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Label_Hora_Chamada))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Label_Medico)
+                    .addComponent(Nome_Medico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Label_Hora_Chegada_EEMI))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Label_Enfermeiro_EEMI)
+                    .addComponent(Nome_Enfermeiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Label_PCR))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jDesktopPaneEventoLayout.createSequentialGroup()
+                .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hora_Evento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dataEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hora_Chamada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dataChamada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDesktopPaneEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hora_Chegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dataChegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(pcr_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         Label_Hora_Chamada.getAccessibleContext().setAccessibleDescription("");
@@ -490,7 +490,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
                 .addComponent(jDesktopPaneEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(validationString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Sair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(guardarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -511,30 +511,54 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         // Regular expression to match an integer (positive or negative)
         return str.matches("\\d+");
     }
-    
+
     public static boolean isValidTime(String time) {
         // Regular expression to match time in HH:mm format
         String timePattern = "^([01]?[0-9]|2[0-3]):[0-5][0-9]$";
         return time.matches(timePattern);
     }
-    
-        public static String createOracleTimestamp(String date, String time) {
+
+    public static String createOracleTimestamp(String date, String time) {
         // Define the input format for date and time
         DateTimeFormatter inputDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter inputTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-        
+
         // Parse the date and time strings
         LocalDateTime dateTime = LocalDateTime.parse(date + "T" + time + ":00");
-        
+
         // Define the output format for Oracle TIMESTAMP
         DateTimeFormatter oracleFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        
+
         // Format the LocalDateTime to the desired Oracle TIMESTAMP format
         return dateTime.format(oracleFormatter);
     }
 
-// Combobox Novo evento    
+    public static int compareWithCurrentDate(String dateStr) {
+        // Define the date format
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+        try {
+            // Parse the input date string
+            LocalDate givenDate = LocalDate.parse(dateStr, dateFormatter);
+            // Get the current date
+            LocalDate currentDate = LocalDate.now();
+
+            // Compare the given date with the current date
+            if (givenDate.isBefore(currentDate)) {
+                return -1; // Given date is in the past
+            } else if (givenDate.isEqual(currentDate)) {
+                return 0; // Given date is the same as the current date
+            } else {
+                return 1; // Given date is in the future
+            }
+        } catch (DateTimeParseException e) {
+            // Handle invalid date format
+            System.out.println("Invalid date format. Please use yyyy-MM-dd.");
+            return -2;
+        }
+    }
+
+// Combobox Novo evento    
     private void setupComboBox() {
         Local_box.addItem("-");
         Quem_Ativa_box.addItem("-");
@@ -612,7 +636,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Nome_EnfermeiroActionPerformed
     private boolean validarCampos() {
-        System.out.println("Data: "+ data_Nascimento.getDateStringOrEmptyString());
         if (!isValidFullName(Nome_Vitima.getText())) {
             validationString.setText("Nome do paciente invalido");
             validationString.setForeground(Color.red);
@@ -622,8 +645,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             Nome_Vitima.setBorder(new LineBorder(Color.green));
             validationString.setText("");
         }
-
-        
         if (!isValidInteger(N_Processo.getText())) {
             validationString.setText("N_Processo invalido");
             validationString.setForeground(Color.red);
@@ -633,7 +654,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             N_Processo.setBorder(new LineBorder(Color.green));
             validationString.setText("");
         }
-        
         if (!isValidInteger(N_Episodio.getText())) {
             validationString.setText("N_episodio invalido");
             validationString.setForeground(Color.red);
@@ -643,17 +663,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             N_Episodio.setBorder(new LineBorder(Color.green));
             validationString.setText("");
         }
-        
-                if (!isValidInteger(N_Episodio.getText())) {
-            validationString.setText("N_episodio invalido");
-            validationString.setForeground(Color.red);
-            N_Episodio.setBorder(new LineBorder(Color.RED));
-            return false;
-        } else {
-            N_Episodio.setBorder(new LineBorder(Color.green));
-            validationString.setText("");
-        }
-                
         if ("".equals(data_Nascimento.getDateStringOrEmptyString())) {
             validationString.setText("Escolha data de nascimento");
             validationString.setForeground(Color.red);
@@ -663,7 +672,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             data_Nascimento.setBorder(new LineBorder(Color.green));
             validationString.setText("");
         }
-        
         if ("".equals(dataAdmicaoHospitalar.getDateStringOrEmptyString())) {
             validationString.setText("Escolha data de admissão hospitalar");
             validationString.setForeground(Color.red);
@@ -673,8 +681,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             dataAdmicaoHospitalar.setBorder(new LineBorder(Color.green));
             validationString.setText("");
         }
-        
-        
+
         if ("-".equals(Local_box.getSelectedItem().toString())) {
             validationString.setText("Escolha o Local");
             validationString.setForeground(Color.red);
@@ -710,6 +717,126 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             return false;
         } else {
             Nome_Enfermeiro.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if ("".equals(dataEvento.getDateStringOrEmptyString())) {
+            validationString.setText("Escolha data do evento");
+            validationString.setForeground(Color.red);
+            dataEvento.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            dataEvento.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if (!isValidTime(hora_Evento.getText())) {
+            validationString.setText("A hora do evento é invalida o formato tem que ser HH:mm");
+            validationString.setForeground(Color.red);
+            hora_Evento.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            hora_Evento.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if ("".equals(dataChamada.getDateStringOrEmptyString())) {
+            validationString.setText("Escolha hora do chamada");
+            validationString.setForeground(Color.red);
+            dataChamada.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            dataChamada.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if (!isValidTime(hora_Chamada.getText())) {
+            validationString.setText("A hora da chamada é invalida o formato tem que ser HH:mm");
+            validationString.setForeground(Color.red);
+            hora_Chamada.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            hora_Chamada.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if ("".equals(dataChegada.getDateStringOrEmptyString())) {
+            validationString.setText("Escolha data da chegada EEMI");
+            validationString.setForeground(Color.red);
+            dataChamada.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            dataChegada.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if (!isValidTime(hora_Chegada.getText())) {
+            validationString.setText("A hora da chegada é invalida o formato tem que ser HH:mm");
+            validationString.setForeground(Color.red);
+            hora_Chegada.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            hora_Chegada.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if (compareWithCurrentDate(data_Nascimento.getDateStringOrEmptyString()) < 1) {
+            validationString.setText("A data de nascimento tem quer ser no passado ou o dia atual");
+            validationString.setForeground(Color.red);
+            data_Nascimento.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            data_Nascimento.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if (compareWithCurrentDate(dataAdmicaoHospitalar.getDateStringOrEmptyString()) < 1) {
+            validationString.setText("A data de admissão tem quer ser no passado ou o dia atual");
+            validationString.setForeground(Color.red);
+            dataAdmicaoHospitalar.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            dataAdmicaoHospitalar.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if (compareWithCurrentDate(dataEvento.getDateStringOrEmptyString()) < 1) {
+            validationString.setText("A data do evento tem quer ser no passado ou o dia atual");
+            validationString.setForeground(Color.red);
+            dataEvento.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            dataEvento.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if (compareWithCurrentDate(dataChamada.getDateStringOrEmptyString()) < 1) {
+            validationString.setText("A data da chamada tem quer ser no passado ou o dia atual");
+            validationString.setForeground(Color.red);
+            dataChamada.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            dataChamada.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if (compareWithCurrentDate(dataChegada.getDateStringOrEmptyString()) < 1) {
+            validationString.setText("A data da chegada tem quer ser no passado ou o dia atual");
+            validationString.setForeground(Color.red);
+            dataChegada.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            dataChegada.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if ("-".equals(pcr_box.getSelectedItem().toString())) {
+            validationString.setText("Escolha o Medico");
+            validationString.setForeground(Color.red);
+            pcr_box.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            pcr_box.setBorder(new LineBorder(Color.green));
             validationString.setText("");
         }
 
@@ -787,9 +914,9 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Quem_Ativa_box;
     private java.awt.Button Sair;
     private javax.swing.JLabel Titulo_NovoEvento;
-    private com.github.lgooddatepicker.components.DatePicker chamadaData;
-    private com.github.lgooddatepicker.components.DatePicker chegadaData;
     private com.github.lgooddatepicker.components.DatePicker dataAdmicaoHospitalar;
+    private com.github.lgooddatepicker.components.DatePicker dataChamada;
+    private com.github.lgooddatepicker.components.DatePicker dataChegada;
     private com.github.lgooddatepicker.components.DatePicker dataEvento;
     private com.github.lgooddatepicker.components.DatePicker data_Nascimento;
     private java.awt.Button guardarButton;
