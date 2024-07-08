@@ -167,7 +167,9 @@ public class Menu_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_EstatisticaActionPerformed
 
     private void ConfiguracoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfiguracoesActionPerformed
-        // TODO add your handling code here:
+        // Ação do Botão Configurações 
+        new Menu_Configuracoes().setVisible(true);
+        this.dispose();           
     }//GEN-LAST:event_ConfiguracoesActionPerformed
 
     private void NovoEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoEventoActionPerformed
