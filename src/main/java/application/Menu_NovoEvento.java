@@ -18,6 +18,7 @@ import classesApp.Local;
 import classesApp.Medico;
 import classesApp.Motivo;
 import classesApp.Quem_Ativa;
+import classesApp.Vitima;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -843,6 +844,9 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
         boolean camposValidos = validarCampos();
+        if(camposValidos){
+            Vitima vitima= new Vitima(Integer.valueOf(N_Processo.getText()), Nome_Vitima.getText(), Integer.valueOf(N_Episodio.getText()), data_Nascimento.getDateStringOrEmptyString(), dataAdmicaoHospitalar.getDateStringOrEmptyString());
+        }
     }//GEN-LAST:event_guardarButtonActionPerformed
 
     private void pcr_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcr_boxActionPerformed
