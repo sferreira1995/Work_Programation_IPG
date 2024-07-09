@@ -6,27 +6,37 @@ package classesApp;
 
 import com.mycompany.bd_1.OracleDatabaseConnection;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Vitima {
+
     private int N_EPISODIO;
     private String NOME_VITIMA;
     private int N_PROCESSO;
     private String DATA_NASCIMENTO;
     private String DATA_ADMISSAO_HOSPITALAR;
+    private String SEXO;
 
     // Constructor
-    public Vitima(int N_EPISODIO, String NOME_VITIMA, int N_PROCESSO, String DATA_NASCIMENTO, String DATA_ADMISSAO_HOSPITALAR) {
-        this.N_EPISODIO = N_EPISODIO;
+    public Vitima(int N_PROCESSO, String NOME_VITIMA, String DATA_NASCIMENTO, String DATA_ADMISSAO_HOSPITALAR, String SEXO) {
         this.NOME_VITIMA = NOME_VITIMA;
         this.N_PROCESSO = N_PROCESSO;
         this.DATA_NASCIMENTO = DATA_NASCIMENTO;
         this.DATA_ADMISSAO_HOSPITALAR = DATA_ADMISSAO_HOSPITALAR;
+        this.SEXO = SEXO;
     }
+
+    public Vitima() {
+    }
+
+
 
     // Getter for N_EPISODIO
     public int getN_EPISODIO() {
@@ -59,8 +69,13 @@ public class Vitima {
     }
 
     // Getter for DATA_NASCIMENTO
-    public String getDATA_NASCIMENTO() {
-        return DATA_NASCIMENTO;
+    public LocalDate getDATA_NASCIMENTO() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+        
+        // Parse the string to LocalDateTime first
+        LocalDate localDate = LocalDate.parse(this.DATA_NASCIMENTO.substring(0, 10));
+        
+        return localDate;
     }
 
     // Setter for DATA_NASCIMENTO
@@ -69,37 +84,83 @@ public class Vitima {
     }
 
     // Getter for DATA_ADMISSAO_HOSPITALAR
-    public String getDATA_ADMISSAO_HOSPITALAR() {
-        return DATA_ADMISSAO_HOSPITALAR;
+    public LocalDate getDATA_ADMISSAO_HOSPITALAR() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+        // Parse the string to LocalDateTime first
+        LocalDate localDate = LocalDate.parse(this.DATA_ADMISSAO_HOSPITALAR.substring(0, 10));
+        return localDate;
     }
 
     // Setter for DATA_ADMISSAO_HOSPITALAR
     public void setDATA_ADMISSAO_HOSPITALAR(String DATA_ADMISSAO_HOSPITALAR) {
         this.DATA_ADMISSAO_HOSPITALAR = DATA_ADMISSAO_HOSPITALAR;
     }
-    
-        public static List<Medico> getAllVitimas() {
-        List<Medico> Medicos = new ArrayList<>();
+
+    public String getSEXO() {
+        return SEXO;
+    }
+
+    public void setSEXO(String SEXO) {
+        this.SEXO = SEXO;
+    }
+
+    public static Vitima getVitimaProcess(int processo) {
+
         Connection connection = OracleDatabaseConnection.getConnection();
-        String query = "SELECT * FROM BD_TC_1709711.VITIMA where";
+        String query = "SELECT * FROM BD_TC_1709711.VITIMA WHERE N_PROCESSO = ?";
 
         try {
-            ResultSet resultSet = OracleDatabaseConnection.executeQuery(connection, query);
-            while (resultSet.next()) {
-                String nome = resultSet.getString("NOME_MEDICO");
-                int id = resultSet.getInt("N_MEDICO");
-                int idOm = resultSet.getInt("N_OM");
- 
-                Medico medico = new Medico(id, nome,idOm);
-                Medicos.add(medico);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, processo);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                do {
+                    String nome = resultSet.getString("NOME_VITIMA");
+                    int n_processo = resultSet.getInt("N_PROCESSO");
+                    String data_nascimento = resultSet.getString("DATA_NASCIMENTO");
+                    String data_admissao = resultSet.getString("DATA_NASCIMENTO");
+                    String sexo = resultSet.getString("SEXO");
+
+                    Vitima vitima = new Vitima(n_processo, nome, data_nascimento, data_admissao, sexo);
+                    return vitima;
+                } while (resultSet.next());
             }
         } catch (SQLException e) {
-            System.out.println("Error fetching Destino records: " + e.getMessage());
+            System.out.println("Error fetching Vitima records: " + e.getMessage());
         } finally {
             OracleDatabaseConnection.closeConnection(connection);
         }
-        return Medicos;
+        return null;
     }
     
-    
+    public static void verifyAndInsertVitimaProcess(int processo, String nome, String DATA_NASCIMENTO, String DATA_ADMISSAO_HOSPITALAR,String SEXO) {
+    Connection connection = OracleDatabaseConnection.getConnection();
+    String query = "SELECT COUNT(*) FROM BD_TC_1709711.VITIMA WHERE N_PROCESSO = ?";
+    String insertQuery = "INSERT INTO BD_TC_1709711.VITIMA (N_PROCESSO, NOME_VITIMA, DATA_NASCIMENTO, DATA_ADMISSAO_HOSPITALAR,SEXO) VALUES (?, ?, TO_DATE(?, 'YYYY-MM-DD'),  TO_DATE(?, 'YYYY-MM-DD'), ?)";
+
+    try {
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, processo);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        resultSet.next();
+        int count = resultSet.getInt(1);
+
+        if (count == 0) {
+            // Process does not exist, insert new record
+            PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
+            insertStatement.setInt(1, processo);
+            insertStatement.setString(2, nome);
+            insertStatement.setString(3, DATA_NASCIMENTO);
+            insertStatement.setString(4, DATA_ADMISSAO_HOSPITALAR);
+            insertStatement.setString(5, SEXO);
+            insertStatement.executeUpdate();
+        }
+    } catch (SQLException e) {
+        System.out.println("Error verifying or inserting Vitima records: " + e.getMessage());
+    } finally {
+        OracleDatabaseConnection.closeConnection(connection);
+    }
+}
 }

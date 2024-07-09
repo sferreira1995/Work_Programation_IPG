@@ -23,12 +23,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="validationString" min="-2" pref="355" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="378" max="-2" attributes="0"/>
+          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="jDesktopPaneEvento" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="Titulo_NovoEvento" min="-2" pref="1018" max="-2" attributes="0"/>
@@ -40,16 +41,15 @@
                       <Component id="Sair" min="-2" pref="97" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jDesktopPlane_Vitima" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                      <Component id="jDesktopPaneEvento" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="validationString" min="-2" pref="355" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="378" max="-2" attributes="0"/>
+              <EmptySpace pref="74" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -57,13 +57,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="Titulo_NovoEvento" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="jDesktopPlane_Vitima" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jDesktopPaneEvento" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="validationString" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="Sair" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="guardarButton" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
@@ -130,7 +130,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="PainelVitima" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -151,67 +151,70 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Label_Nome" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="Label_Processo" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="Label_Episódio" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Nome_Vitima" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="N_Episodio" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="Label_Nome" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="968" max="32767" attributes="0"/>
+                                      <Component id="Genero" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
                                       <Component id="Label_D_Admissao_Hospitalar" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="N_Processo" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="dataAdmicaoHospitalar" min="-2" pref="239" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                                       <Component id="Label_D_Nascimento" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Component id="data_Nascimento" min="-2" pref="279" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="data_Nascimento" pref="239" max="32767" attributes="0"/>
-                                  <Component id="dataAdmicaoHospitalar" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="Label_Processo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="Nome_Vitima" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="Label_Genero" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="N_Processo" min="-2" pref="76" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="0" pref="281" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Label_Genero" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="Genero" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Nome_Vitima" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Label_Nome" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Label_Genero" alignment="3" max="32767" attributes="0"/>
-                          <Component id="Genero" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Label_Processo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="N_Processo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Label_D_Nascimento" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="data_Nascimento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Label_Processo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Label_Nome" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Nome_Vitima" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Genero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Label_Genero" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="N_Episodio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Label_Episódio" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Label_D_Admissao_Hospitalar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="dataAdmicaoHospitalar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="data_Nascimento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Label_D_Nascimento" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -219,14 +222,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="Label_Processo">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Processo:"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="Label_Nome">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nome:"/>
@@ -246,14 +241,6 @@
             <Component class="javax.swing.JLabel" name="Label_Genero">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Genero"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Label_Epis&#xf3;dio">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Epis&#xf3;dio:"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="10" style="0"/>
                 </Property>
@@ -287,16 +274,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="N_ProcessoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="N_Episodio">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="10" style="0"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="N_EpisodioActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JComboBox" name="Genero">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -319,9 +296,17 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
+            <Component class="com.github.lgooddatepicker.components.DatePicker" name="dataAdmicaoHospitalar">
+            </Component>
             <Component class="com.github.lgooddatepicker.components.DatePicker" name="data_Nascimento">
             </Component>
-            <Component class="com.github.lgooddatepicker.components.DatePicker" name="dataAdmicaoHospitalar">
+            <Component class="javax.swing.JLabel" name="Label_Processo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Processo:"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="10" style="0"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

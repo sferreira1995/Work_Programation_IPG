@@ -19,6 +19,8 @@ import classesApp.Medico;
 import classesApp.Motivo;
 import classesApp.Quem_Ativa;
 import classesApp.Vitima;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -38,8 +40,28 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
      * Creates new form Menu_1
      */
     public Menu_NovoEvento() {
+
+
         initComponents();
+
         setupComboBox();
+        
+        this.N_Processo.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent e) {
+                Vitima vitima = new Vitima();
+                vitima = vitima.getVitimaProcess(Integer.valueOf(N_Processo.getText()));
+                if (vitima != null) {
+                    Nome_Vitima.setText(vitima.getNOME_VITIMA());
+                    Nome_Vitima.setEnabled(false);
+                    data_Nascimento.setDate(vitima.getDATA_NASCIMENTO());
+                    data_Nascimento.setEnabled(false);
+                    dataAdmicaoHospitalar.setDate(vitima.getDATA_ADMISSAO_HOSPITALAR());
+                    dataAdmicaoHospitalar.setEnabled(false);
+                    Genero.setSelectedItem(vitima.getSEXO());
+                    Genero.setEnabled(false);
+                }
+            }
+        });
     }
 
     /**
@@ -55,18 +77,16 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         Sair = new java.awt.Button();
         jDesktopPlane_Vitima = new javax.swing.JDesktopPane();
         PainelVitima = new javax.swing.JPanel();
-        Label_Processo = new javax.swing.JLabel();
         Label_Nome = new javax.swing.JLabel();
         Label_D_Nascimento = new javax.swing.JLabel();
         Label_Genero = new javax.swing.JLabel();
-        Label_Episódio = new javax.swing.JLabel();
         Label_D_Admissao_Hospitalar = new javax.swing.JLabel();
         Nome_Vitima = new javax.swing.JTextField();
         N_Processo = new javax.swing.JTextField();
-        N_Episodio = new javax.swing.JTextField();
         Genero = new javax.swing.JComboBox<>();
-        data_Nascimento = new com.github.lgooddatepicker.components.DatePicker();
         dataAdmicaoHospitalar = new com.github.lgooddatepicker.components.DatePicker();
+        data_Nascimento = new com.github.lgooddatepicker.components.DatePicker();
+        Label_Processo = new javax.swing.JLabel();
         jDesktopPaneEvento = new javax.swing.JDesktopPane();
         Label_Hora_Evento = new javax.swing.JLabel();
         Label_Hora_Chamada = new javax.swing.JLabel();
@@ -115,9 +135,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
 
         PainelVitima.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
 
-        Label_Processo.setText("Processo:");
-        Label_Processo.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-
         Label_Nome.setText("Nome:");
         Label_Nome.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
@@ -126,9 +143,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
 
         Label_Genero.setText("Genero");
         Label_Genero.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-
-        Label_Episódio.setText("Episódio:");
-        Label_Episódio.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
         Label_D_Admissao_Hospitalar.setText("D.Admissão Hospitalar");
         Label_D_Admissao_Hospitalar.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -147,13 +161,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             }
         });
 
-        N_Episodio.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        N_Episodio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                N_EpisodioActionPerformed(evt);
-            }
-        });
-
         Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino" }));
         Genero.setBackground(new java.awt.Color(242, 242, 242));
         Genero.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -163,6 +170,9 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             }
         });
 
+        Label_Processo.setText("Processo:");
+        Label_Processo.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+
         javax.swing.GroupLayout PainelVitimaLayout = new javax.swing.GroupLayout(PainelVitima);
         PainelVitima.setLayout(PainelVitimaLayout);
         PainelVitimaLayout.setHorizontalGroup(
@@ -170,53 +180,54 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             .addGroup(PainelVitimaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Label_Nome)
-                    .addComponent(Label_Processo)
-                    .addComponent(Label_Episódio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Nome_Vitima)
                     .addGroup(PainelVitimaLayout.createSequentialGroup()
                         .addGroup(PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PainelVitimaLayout.createSequentialGroup()
-                                .addComponent(N_Episodio, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Label_Nome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 968, Short.MAX_VALUE)
+                                .addComponent(Genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PainelVitimaLayout.createSequentialGroup()
+                                .addComponent(Label_D_Admissao_Hospitalar)
+                                .addGap(28, 28, 28)
+                                .addComponent(dataAdmicaoHospitalar, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44)
+                                .addComponent(Label_D_Nascimento)
+                                .addGap(26, 26, 26)
+                                .addComponent(data_Nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(15, 15, 15))
+                    .addGroup(PainelVitimaLayout.createSequentialGroup()
+                        .addComponent(Label_Processo)
+                        .addGap(10, 10, 10)
+                        .addGroup(PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PainelVitimaLayout.createSequentialGroup()
+                                .addComponent(Nome_Vitima)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Label_D_Admissao_Hospitalar))
+                                .addComponent(Label_Genero)
+                                .addGap(113, 113, 113))
                             .addGroup(PainelVitimaLayout.createSequentialGroup()
                                 .addComponent(N_Processo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Label_D_Nascimento)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(data_Nascimento, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                            .addComponent(dataAdmicaoHospitalar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 281, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addComponent(Label_Genero)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         PainelVitimaLayout.setVerticalGroup(
             PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelVitimaLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Nome_Vitima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Label_Nome)
-                    .addComponent(Label_Genero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Label_Processo)
                     .addComponent(N_Processo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Label_D_Nascimento)
-                    .addComponent(data_Nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Label_Processo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Label_Nome)
+                    .addComponent(Nome_Vitima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Label_Genero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelVitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(N_Episodio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Label_Episódio)
                     .addComponent(Label_D_Admissao_Hospitalar)
-                    .addComponent(dataAdmicaoHospitalar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dataAdmicaoHospitalar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(data_Nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Label_D_Nascimento))
                 .addContainerGap())
         );
 
@@ -229,7 +240,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPlane_VitimaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(PainelVitima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(59, 59, 59))
         );
         jDesktopPlane_VitimaLayout.setVerticalGroup(
             jDesktopPlane_VitimaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,11 +467,12 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(validationString, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(378, 378, 378))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jDesktopPaneEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(Titulo_NovoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 1018, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -470,25 +482,24 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jDesktopPlane_Vitima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(validationString, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(378, 378, 378))
+                        .addContainerGap()
+                        .addComponent(jDesktopPlane_Vitima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jDesktopPaneEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Titulo_NovoEvento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(26, 26, 26)
                 .addComponent(jDesktopPlane_Vitima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDesktopPaneEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(validationString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Sair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(guardarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -590,22 +601,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_SairActionPerformed
 
-    private void N_EpisodioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_N_EpisodioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_N_EpisodioActionPerformed
-
-    private void GeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeneroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GeneroActionPerformed
-
-    private void N_ProcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_N_ProcessoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_N_ProcessoActionPerformed
-
-    private void Nome_VitimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nome_VitimaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Nome_VitimaActionPerformed
-
     private void Local_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Local_boxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Local_boxActionPerformed
@@ -634,15 +629,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Nome_EnfermeiroActionPerformed
     private boolean validarCampos() {
-        if (!isValidFullName(Nome_Vitima.getText())) {
-            validationString.setText("Nome do paciente invalido");
-            validationString.setForeground(Color.red);
-            Nome_Vitima.setBorder(new LineBorder(Color.RED));
-            return false;
-        } else {
-            Nome_Vitima.setBorder(new LineBorder(Color.green));
-            validationString.setText("");
-        }
         if (!isValidInteger(N_Processo.getText())) {
             validationString.setText("N_Processo invalido");
             validationString.setForeground(Color.red);
@@ -652,15 +638,17 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             N_Processo.setBorder(new LineBorder(Color.green));
             validationString.setText("");
         }
-        if (!isValidInteger(N_Episodio.getText())) {
-            validationString.setText("N_episodio invalido");
+
+        if (!isValidFullName(Nome_Vitima.getText())) {
+            validationString.setText("Nome do paciente invalido");
             validationString.setForeground(Color.red);
-            N_Episodio.setBorder(new LineBorder(Color.RED));
+            Nome_Vitima.setBorder(new LineBorder(Color.RED));
             return false;
         } else {
-            N_Episodio.setBorder(new LineBorder(Color.green));
+            Nome_Vitima.setBorder(new LineBorder(Color.green));
             validationString.setText("");
         }
+
         if ("".equals(data_Nascimento.getDateStringOrEmptyString())) {
             validationString.setText("Escolha data de nascimento");
             validationString.setForeground(Color.red);
@@ -778,7 +766,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             validationString.setText("");
         }
 
-        if (compareWithCurrentDate(data_Nascimento.getDateStringOrEmptyString()) < 1) {
+        if (compareWithCurrentDate(data_Nascimento.getDateStringOrEmptyString()) == 1) {
             validationString.setText("A data de nascimento tem quer ser no passado ou o dia atual");
             validationString.setForeground(Color.red);
             data_Nascimento.setBorder(new LineBorder(Color.RED));
@@ -788,7 +776,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             validationString.setText("");
         }
 
-        if (compareWithCurrentDate(dataAdmicaoHospitalar.getDateStringOrEmptyString()) < 1) {
+        if (compareWithCurrentDate(dataAdmicaoHospitalar.getDateStringOrEmptyString()) == 1) {
             validationString.setText("A data de admissão tem quer ser no passado ou o dia atual");
             validationString.setForeground(Color.red);
             dataAdmicaoHospitalar.setBorder(new LineBorder(Color.RED));
@@ -798,7 +786,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             validationString.setText("");
         }
 
-        if (compareWithCurrentDate(dataEvento.getDateStringOrEmptyString()) < 1) {
+        if (compareWithCurrentDate(dataEvento.getDateStringOrEmptyString()) == 1) {
             validationString.setText("A data do evento tem quer ser no passado ou o dia atual");
             validationString.setForeground(Color.red);
             dataEvento.setBorder(new LineBorder(Color.RED));
@@ -808,7 +796,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             validationString.setText("");
         }
 
-        if (compareWithCurrentDate(dataChamada.getDateStringOrEmptyString()) < 1) {
+        if (compareWithCurrentDate(dataChamada.getDateStringOrEmptyString()) == 1) {
             validationString.setText("A data da chamada tem quer ser no passado ou o dia atual");
             validationString.setForeground(Color.red);
             dataChamada.setBorder(new LineBorder(Color.RED));
@@ -818,7 +806,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             validationString.setText("");
         }
 
-        if (compareWithCurrentDate(dataChegada.getDateStringOrEmptyString()) < 1) {
+        if (compareWithCurrentDate(dataChegada.getDateStringOrEmptyString()) == 1) {
             validationString.setText("A data da chegada tem quer ser no passado ou o dia atual");
             validationString.setForeground(Color.red);
             dataChegada.setBorder(new LineBorder(Color.RED));
@@ -829,7 +817,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         }
 
         if ("-".equals(pcr_box.getSelectedItem().toString())) {
-            validationString.setText("Escolha o Medico");
+            validationString.setText("Escolha uma opção PCR");
             validationString.setForeground(Color.red);
             pcr_box.setBorder(new LineBorder(Color.RED));
             return false;
@@ -844,14 +832,36 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
         boolean camposValidos = validarCampos();
-        if(camposValidos){
-            Vitima vitima= new Vitima(Integer.valueOf(N_Processo.getText()), Nome_Vitima.getText(), Integer.valueOf(N_Episodio.getText()), data_Nascimento.getDateStringOrEmptyString(), dataAdmicaoHospitalar.getDateStringOrEmptyString());
+        if (camposValidos) {
+            Vitima vitima = new Vitima(Integer.valueOf(N_Processo.getText()), Nome_Vitima.getText(), data_Nascimento.getDateStringOrEmptyString(), dataAdmicaoHospitalar.getDateStringOrEmptyString(), Genero.getSelectedItem().toString());
+            vitima.verifyAndInsertVitimaProcess(Integer.valueOf(N_Processo.getText()), Nome_Vitima.getText(), data_Nascimento.getDateStringOrEmptyString(), dataAdmicaoHospitalar.getDateStringOrEmptyString(), Genero.getSelectedItem().toString());
+            
         }
     }//GEN-LAST:event_guardarButtonActionPerformed
 
     private void pcr_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pcr_boxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pcr_boxActionPerformed
+
+    private void GeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeneroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GeneroActionPerformed
+
+
+    private void N_ProcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_N_ProcessoActionPerformed
+        Vitima vitima = new Vitima();
+        vitima = vitima.getVitimaProcess(Integer.valueOf(N_Processo.getText()));
+        if (vitima!=null) {
+            Nome_Vitima.setText(vitima.getNOME_VITIMA());
+            data_Nascimento.setDate(vitima.getDATA_NASCIMENTO());
+            dataAdmicaoHospitalar.setDate(vitima.getDATA_NASCIMENTO());
+            Genero.setSelectedItem(vitima.getSEXO());
+        }
+    }//GEN-LAST:event_N_ProcessoActionPerformed
+
+    private void Nome_VitimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nome_VitimaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Nome_VitimaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -894,7 +904,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
     private javax.swing.JLabel Label_D_Admissao_Hospitalar;
     private javax.swing.JLabel Label_D_Nascimento;
     private javax.swing.JLabel Label_Enfermeiro_EEMI;
-    private javax.swing.JLabel Label_Episódio;
     private javax.swing.JLabel Label_Genero;
     private javax.swing.JLabel Label_Hora_Chamada;
     private javax.swing.JLabel Label_Hora_Chegada_EEMI;
@@ -906,7 +915,6 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
     private javax.swing.JLabel Label_Processo;
     private javax.swing.JLabel Label_Quem_Ativa;
     private javax.swing.JComboBox<String> Local_box;
-    private javax.swing.JTextField N_Episodio;
     private javax.swing.JTextField N_Processo;
     private javax.swing.JComboBox<String> Nome_Enfermeiro;
     private javax.swing.JComboBox<String> Nome_Medico;
