@@ -9,6 +9,8 @@
  */
 package application;
 
+import classesApp.Evento;
+import classesApp.Vitima;
 import javax.swing.*;
 
 
@@ -20,6 +22,8 @@ public class Menu_Estatistica extends javax.swing.JFrame {
      */
     public Menu_Estatistica() {
         initComponents();
+        definirEstatisticas();
+        
     }
 
     /**
@@ -33,6 +37,10 @@ public class Menu_Estatistica extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         Sair = new java.awt.Button();
+        jLabel2 = new javax.swing.JLabel();
+        totalEventos = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        totalVitimas = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,23 +58,47 @@ public class Menu_Estatistica extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Total Eventos: ");
+
+        jLabel4.setText("Total de Utentes:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1205, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
+                .addGap(31, 31, 31))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(totalEventos, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalVitimas, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 446, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(totalEventos, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalVitimas, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
                 .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -78,6 +110,15 @@ public class Menu_Estatistica extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_SairActionPerformed
 
+        private void definirEstatisticas() {                                     
+            Evento evento = new Evento();
+            
+            totalEventos.setText(""+evento.getAllEventos());
+                                      
+            Vitima vitima = new Vitima();
+            
+            totalVitimas.setText(""+vitima.getAllVitima());
+    } 
     /**
      * @param args the command line arguments
      */
@@ -118,5 +159,9 @@ public class Menu_Estatistica extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button Sair;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel totalEventos;
+    private javax.swing.JLabel totalVitimas;
     // End of variables declaration//GEN-END:variables
 }

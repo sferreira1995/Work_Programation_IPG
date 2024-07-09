@@ -9,9 +9,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Evento {
+
     private int N_EVENTO;
     private String DATA_HORA_EVENTO;
     private String DATA_HORA_CHAMADA;
@@ -40,20 +43,40 @@ public class Evento {
 
     public Evento() {
     }
-    
-        public static void insertEvento(String dataEvento, String dataChamada, String dataChegada, String pcr, String activa, int vitima, String local, String Enfermeiro, String Medico ) {
-    Connection connection = OracleDatabaseConnection.getConnection();
-    String insertQuery = "INSERT INTO BD_TC_1709711.EVENTO ( DATA_HORA_EVENTO, DATA_HORA_CHAMADA, DATA_HORA_CHEGADA, PCR_S_N, QUEM_ATIVA_N_QUEM_ATIVA, VITIMA_N_PROCESSO, LOCAL_N_LOCAL, RESPOSTA_EEMI_MEDICO_N_MEDICO, RESPOSTA_EEMI_ENF_N_ENFERMEIRO)  VALUES (?, ?, TO_DATE(?, 'YYYY-MM-DD'),  TO_DATE(?, 'YYYY-MM-DD'), ?)";
 
-    try {
+    public static void insertEvento(String dataEvento, String dataChamada, String dataChegada, String pcr, String activa, int vitima, String local, String Enfermeiro, String Medico) {
+        Connection connection = OracleDatabaseConnection.getConnection();
+        String insertQuery = "INSERT INTO BD_TC_1709711.EVENTO ( DATA_HORA_EVENTO, DATA_HORA_CHAMADA, DATA_HORA_CHEGADA, PCR_S_N, QUEM_ATIVA_N_QUEM_ATIVA, VITIMA_N_PROCESSO, LOCAL_N_LOCAL, RESPOSTA_EEMI_MEDICO_N_MEDICO, RESPOSTA_EEMI_ENF_N_ENFERMEIRO)  VALUES (?, ?, TO_DATE(?, 'YYYY-MM-DD'),  TO_DATE(?, 'YYYY-MM-DD'), ?)";
+
+        try {
             // Process does not exist, insert new record
             PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
 
             insertStatement.executeUpdate();
-    } catch (SQLException e) {
-        System.out.println("Error verifying or inserting Vitima records: " + e.getMessage());
-    } finally {
-        OracleDatabaseConnection.closeConnection(connection);
+        } catch (SQLException e) {
+            System.out.println("Error verifying or inserting Vitima records: " + e.getMessage());
+        } finally {
+            OracleDatabaseConnection.closeConnection(connection);
+        }
     }
-}
+
+    public static int getAllEventos() {
+        List<Evento> Lista_Eventos = new ArrayList<>();
+        Connection connection = OracleDatabaseConnection.getConnection();
+        String query = "SELECT count(*) AS total_Eventos FROM BD_TC_1709711.EVENTO";
+       int total=0;
+        try {
+            ResultSet resultSet = OracleDatabaseConnection.executeQuery(connection, query);
+            while (resultSet.next()) {
+                String funcao = resultSet.getString("Evento");
+                total = resultSet.getInt("total_Eventos");
+
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching Destino records: " + e.getMessage());
+        } finally {
+            OracleDatabaseConnection.closeConnection(connection);
+        }
+        return total;
+    }
 }
