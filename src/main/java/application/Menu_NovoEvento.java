@@ -59,6 +59,14 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
                     dataAdmicaoHospitalar.setEnabled(false);
                     Genero.setSelectedItem(vitima.getSEXO());
                     Genero.setEnabled(false);
+                }else{
+                     Nome_Vitima.setText("");
+                    Nome_Vitima.setEnabled(true);
+                    data_Nascimento.clear();
+                    data_Nascimento.setEnabled(true);
+                    dataAdmicaoHospitalar.clear();
+                    dataAdmicaoHospitalar.setEnabled(true);
+                    Genero.setEnabled(true);
                 }
             }
         });
@@ -849,14 +857,27 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
 
 
     private void N_ProcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_N_ProcessoActionPerformed
-        Vitima vitima = new Vitima();
-        vitima = vitima.getVitimaProcess(Integer.valueOf(N_Processo.getText()));
-        if (vitima!=null) {
-            Nome_Vitima.setText(vitima.getNOME_VITIMA());
-            data_Nascimento.setDate(vitima.getDATA_NASCIMENTO());
-            dataAdmicaoHospitalar.setDate(vitima.getDATA_NASCIMENTO());
-            Genero.setSelectedItem(vitima.getSEXO());
-        }
+         Vitima vitima = new Vitima();
+                vitima = vitima.getVitimaProcess(Integer.valueOf(N_Processo.getText()));
+                if (vitima != null) {
+                    Nome_Vitima.setText(vitima.getNOME_VITIMA());
+                    Nome_Vitima.setEnabled(false);
+                    data_Nascimento.setDate(vitima.getDATA_NASCIMENTO());
+                    data_Nascimento.setEnabled(false);
+                    dataAdmicaoHospitalar.setDate(vitima.getDATA_ADMISSAO_HOSPITALAR());
+                    dataAdmicaoHospitalar.setEnabled(false);
+                    Genero.setSelectedItem(vitima.getSEXO());
+                    Genero.setEnabled(false);
+                }else{
+                     Nome_Vitima.setText("");
+                    Nome_Vitima.setEnabled(true);
+                    data_Nascimento.clear();
+                    data_Nascimento.setEnabled(true);
+                    dataAdmicaoHospitalar.clear();
+                    dataAdmicaoHospitalar.setEnabled(true);
+                    Genero.setEnabled(true);
+                }
+            
     }//GEN-LAST:event_N_ProcessoActionPerformed
 
     private void Nome_VitimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nome_VitimaActionPerformed

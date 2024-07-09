@@ -119,7 +119,7 @@ public class Vitima {
                     String nome = resultSet.getString("NOME_VITIMA");
                     int n_processo = resultSet.getInt("N_PROCESSO");
                     String data_nascimento = resultSet.getString("DATA_NASCIMENTO");
-                    String data_admissao = resultSet.getString("DATA_NASCIMENTO");
+                    String data_admissao = resultSet.getString("DATA_ADMISSAO_HOSPITALAR");
                     String sexo = resultSet.getString("SEXO");
 
                     Vitima vitima = new Vitima(n_processo, nome, data_nascimento, data_admissao, sexo);
