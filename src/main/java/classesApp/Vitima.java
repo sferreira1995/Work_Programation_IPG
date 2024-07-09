@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 public class Vitima {
 
     private int N_EPISODIO;
@@ -163,4 +164,22 @@ public class Vitima {
         OracleDatabaseConnection.closeConnection(connection);
     }
 }
+
+    public static int getAllVitima() {
+        Connection connection = OracleDatabaseConnection.getConnection();
+        String query = "SELECT count(*) AS total_vitima FROM BD_TC_1709711.VITIMA";
+        int total = 0;
+        try {
+            ResultSet resultSet = OracleDatabaseConnection.executeQuery(connection, query);
+            if (resultSet.next()) {
+                total = resultSet.getInt("total_vitima");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching Vitima records: " + e.getMessage());
+        } finally {
+            OracleDatabaseConnection.closeConnection(connection);
+        }
+        return total;
+    }
 }
+  
