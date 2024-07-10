@@ -42,11 +42,10 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
      */
     public Menu_NovoEvento() {
 
-
         initComponents();
 
         setupComboBox();
-        
+
         this.N_Processo.addFocusListener(new FocusAdapter() {
             public void focusLost(FocusEvent e) {
                 Vitima vitima = new Vitima();
@@ -60,8 +59,8 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
                     dataAdmicaoHospitalar.setEnabled(false);
                     Genero.setSelectedItem(vitima.getSEXO());
                     Genero.setEnabled(false);
-                }else{
-                     Nome_Vitima.setText("");
+                } else {
+                    Nome_Vitima.setText("");
                     Nome_Vitima.setEnabled(true);
                     data_Nascimento.clear();
                     data_Nascimento.setEnabled(true);
@@ -519,7 +518,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     public static boolean isValidFullName(String name) {
         // Check if the name matches the pattern
         Matcher matcher = FULL_NAME_PATTERN.matcher(name);
@@ -845,9 +844,18 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
         if (camposValidos) {
             Vitima vitima = new Vitima(Integer.valueOf(N_Processo.getText()), Nome_Vitima.getText(), data_Nascimento.getDateStringOrEmptyString(), dataAdmicaoHospitalar.getDateStringOrEmptyString(), Genero.getSelectedItem().toString());
             vitima.verifyAndInsertVitimaProcess(Integer.valueOf(N_Processo.getText()), Nome_Vitima.getText(), data_Nascimento.getDateStringOrEmptyString(), dataAdmicaoHospitalar.getDateStringOrEmptyString(), Genero.getSelectedItem().toString());
-            Evento evento= new Evento();
-            evento.insertEvento(dataEvento.getDateStringOrEmptyString()+" "+hora_Evento.getText(), dataChamada.getDateStringOrEmptyString()+" "+hora_Chamada.getText(), dataChegada.getDateStringOrEmptyString()+" "+hora_Chegada.getText(), pcr_box.getSelectedItem().toString(), Quem_Ativa_box.getSelectedItem().toString(),Integer.valueOf(N_Processo.getText()), Local_box.getSelectedItem().toString(),Nome_Enfermeiro.getSelectedItem().toString(), Nome_Medico.getSelectedItem().toString());
-            int n_evento=evento.getMaxNEvent();
+            Evento evento = new Evento();
+            evento.insertEvento(dataEvento.getDateStringOrEmptyString() + " " + hora_Evento.getText(), dataChamada.getDateStringOrEmptyString() + " " + hora_Chamada.getText(), dataChegada.getDateStringOrEmptyString() + " " + hora_Chegada.getText(), pcr_box.getSelectedItem().toString(), Quem_Ativa_box.getSelectedItem().toString(), Integer.valueOf(N_Processo.getText()), Local_box.getSelectedItem().toString(), Nome_Enfermeiro.getSelectedItem().toString(), Nome_Medico.getSelectedItem().toString());
+            int n_evento = evento.getMaxNEvent();
+            if ("sim".equals(pcr_box.getSelectedItem().toString())) {
+                Menu_PCR pcr = new Menu_PCR();
+                pcr.n_evento.setText("" + n_evento);
+                pcr.setVisible(true);
+
+            } else {
+                new Menu_1().setVisible(true);
+            }
+            this.dispose();
         }
     }//GEN-LAST:event_guardarButtonActionPerformed
 
@@ -861,27 +869,27 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
 
 
     private void N_ProcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_N_ProcessoActionPerformed
-         Vitima vitima = new Vitima();
-                vitima = vitima.getVitimaProcess(Integer.valueOf(N_Processo.getText()));
-                if (vitima != null) {
-                    Nome_Vitima.setText(vitima.getNOME_VITIMA());
-                    Nome_Vitima.setEnabled(false);
-                    data_Nascimento.setDate(vitima.getDATA_NASCIMENTO());
-                    data_Nascimento.setEnabled(false);
-                    dataAdmicaoHospitalar.setDate(vitima.getDATA_ADMISSAO_HOSPITALAR());
-                    dataAdmicaoHospitalar.setEnabled(false);
-                    Genero.setSelectedItem(vitima.getSEXO());
-                    Genero.setEnabled(false);
-                }else{
-                     Nome_Vitima.setText("");
-                    Nome_Vitima.setEnabled(true);
-                    data_Nascimento.clear();
-                    data_Nascimento.setEnabled(true);
-                    dataAdmicaoHospitalar.clear();
-                    dataAdmicaoHospitalar.setEnabled(true);
-                    Genero.setEnabled(true);
-                }
-            
+        Vitima vitima = new Vitima();
+        vitima = vitima.getVitimaProcess(Integer.valueOf(N_Processo.getText()));
+        if (vitima != null) {
+            Nome_Vitima.setText(vitima.getNOME_VITIMA());
+            Nome_Vitima.setEnabled(false);
+            data_Nascimento.setDate(vitima.getDATA_NASCIMENTO());
+            data_Nascimento.setEnabled(false);
+            dataAdmicaoHospitalar.setDate(vitima.getDATA_ADMISSAO_HOSPITALAR());
+            dataAdmicaoHospitalar.setEnabled(false);
+            Genero.setSelectedItem(vitima.getSEXO());
+            Genero.setEnabled(false);
+        } else {
+            Nome_Vitima.setText("");
+            Nome_Vitima.setEnabled(true);
+            data_Nascimento.clear();
+            data_Nascimento.setEnabled(true);
+            dataAdmicaoHospitalar.clear();
+            dataAdmicaoHospitalar.setEnabled(true);
+            Genero.setEnabled(true);
+        }
+
     }//GEN-LAST:event_N_ProcessoActionPerformed
 
     private void Nome_VitimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nome_VitimaActionPerformed

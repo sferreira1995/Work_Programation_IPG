@@ -96,7 +96,7 @@ public class Evento {
     
         public static int getMaxNEvent() {
         Connection connection = OracleDatabaseConnection.getConnection();
-        String query = "SELECT MAX(N_EVENT) AS max_N_EVENT FROM BD_TC_1709711.EVENTO";
+        String query = "SELECT MAX(N_EVENTO) AS max_N_EVENT FROM BD_TC_1709711.EVENTO";
         int maxNEvent = 0;
 
         try {
