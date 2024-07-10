@@ -93,4 +93,23 @@ public class Evento {
         }
         return total;
     }
+    
+        public static int getMaxNEvent() {
+        Connection connection = OracleDatabaseConnection.getConnection();
+        String query = "SELECT MAX(N_EVENT) AS max_N_EVENT FROM BD_TC_1709711.EVENTO";
+        int maxNEvent = 0;
+
+        try {
+            ResultSet resultSet = OracleDatabaseConnection.executeQuery(connection, query);
+            if (resultSet.next()) {
+                maxNEvent = resultSet.getInt("max_N_EVENT");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching max N_EVENT: " + e.getMessage());
+        } finally {
+            OracleDatabaseConnection.closeConnection(connection);
+        }
+        
+        return maxNEvent;
+    }
 }

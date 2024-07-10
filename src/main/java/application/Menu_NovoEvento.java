@@ -847,6 +847,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             vitima.verifyAndInsertVitimaProcess(Integer.valueOf(N_Processo.getText()), Nome_Vitima.getText(), data_Nascimento.getDateStringOrEmptyString(), dataAdmicaoHospitalar.getDateStringOrEmptyString(), Genero.getSelectedItem().toString());
             Evento evento= new Evento();
             evento.insertEvento(dataEvento.getDateStringOrEmptyString()+" "+hora_Evento.getText(), dataChamada.getDateStringOrEmptyString()+" "+hora_Chamada.getText(), dataChegada.getDateStringOrEmptyString()+" "+hora_Chegada.getText(), pcr_box.getSelectedItem().toString(), Quem_Ativa_box.getSelectedItem().toString(),Integer.valueOf(N_Processo.getText()), Local_box.getSelectedItem().toString(),Nome_Enfermeiro.getSelectedItem().toString(), Nome_Medico.getSelectedItem().toString());
+            int n_evento=evento.getMaxNEvent();
         }
     }//GEN-LAST:event_guardarButtonActionPerformed
 
