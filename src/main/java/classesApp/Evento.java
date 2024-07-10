@@ -47,8 +47,8 @@ public class Evento {
         public static void insertEvento(String dataEvento, String dataChamada, String dataChegada, String pcr, String activa, int vitima, String local, String Enfermeiro, String Medico ) {
     Connection connection = OracleDatabaseConnection.getConnection();
     String insertQuery = "INSERT INTO BD_TC_1709711.EVENTO ( DATA_HORA_EVENTO, DATA_HORA_CHAMADA, DATA_HORA_CHEGADA, PCR_S_N, QUEM_ATIVA_N_QUEM_ATIVA, VITIMA_N_PROCESSO, LOCAL_N_LOCAL, RESPOSTA_EEMI_MEDICO_N_MEDICO, RESPOSTA_EEMI_ENF_N_ENFERMEIRO)  VALUES "
-            + "(TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS', TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS', TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'), ?, (Select N_QUEM_ATIVA FROM BD_TC_1709711.QUEM_ATIVA WHERE QUEM_ATIVA= ? ), (Select N_LOCAL FROM BD_TC_1709711.LOCAL WHERE LOCAL= ?), (Select N_MEDICO FROM BD_TC_1709711.RESPOSTA_EEMI_MEDICO WHERE NOME_MEDICO= ? ), (Select N_ENFERMEIRO FROM BD_TC_1709711.RESPOSTA_EEMI_ENF WHERE NOME_ENFERMEIRO= ? ))";
-
+            + "(TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'), ?, (Select N_QUEM_ATIVA FROM BD_TC_1709711.QUEM_ATIVA WHERE QUEM_ATIVA= ? ), ? , (Select N_LOCAL FROM BD_TC_1709711.LOCAL WHERE LOCAL= ?), (Select N_MEDICO FROM BD_TC_1709711.RESPOSTA_EEMI_MEDICO WHERE NOME_MEDICO= ? ), (Select N_ENFERMEIRO FROM BD_TC_1709711.RESPOSTA_EEMI_ENF WHERE NOME_ENFERMEIRO= ? ))";
+    String test="";
             System.out.println(insertQuery);
     try {
    
@@ -59,13 +59,16 @@ public class Evento {
             insertStatement.setString(3, dataChegada);
             insertStatement.setString(4, pcr);
             insertStatement.setString(5, activa);
-            insertStatement.setInt(5, vitima);
-            insertStatement.setString(6, local);
-            insertStatement.setString(7, Enfermeiro);
+            insertStatement.setInt(6, vitima);
+            insertStatement.setString(7, local);
             insertStatement.setString(8, Medico);
+            insertStatement.setString(9, Enfermeiro);
+
             insertStatement.executeUpdate();
+            
         } catch (SQLException e) {
-            System.out.println("Error verifying or inserting Vitima records: " + e.getMessage());
+            
+            System.out.println("Error verifying or inserting Event records: " + e.getMessage());
         } finally {
             OracleDatabaseConnection.closeConnection(connection);
         }
