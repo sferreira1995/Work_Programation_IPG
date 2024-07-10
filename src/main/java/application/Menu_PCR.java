@@ -4,10 +4,18 @@
  */
 package application;
 
+import classesApp.Evento;
 import javax.swing.*;
 import classesApp.Motivo;
+import classesApp.Vitima;
+import java.awt.Color;
 import java.util.List;
 import java.awt.event.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -21,11 +29,58 @@ public class Menu_PCR extends javax.swing.JFrame {
     private String Valor_motivo_pcr;
 
     
-    public Menu_PCR() {
+    public Menu_PCR(String text) {
         
         Motivo_box = new JComboBox<>();
         initComponents();
         setupComboBox();
+        n_evento.setText(text);
+    }
+    
+        public static boolean isValidTime(String time) {
+        // Regular expression to match time in HH:mm format
+        String timePattern = "^([01]?[0-9]|2[0-3]):[0-5][0-9]$";
+        return time.matches(timePattern);
+    }
+
+    public static String createOracleTimestamp(String date, String time) {
+        // Define the input format for date and time
+        DateTimeFormatter inputDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter inputTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
+        // Parse the date and time strings
+        LocalDateTime dateTime = LocalDateTime.parse(date + "T" + time + ":00");
+
+        // Define the output format for Oracle TIMESTAMP
+        DateTimeFormatter oracleFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        // Format the LocalDateTime to the desired Oracle TIMESTAMP format
+        return dateTime.format(oracleFormatter);
+    }
+
+    public static int compareWithCurrentDate(String dateStr) {
+        // Define the date format
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        try {
+            // Parse the input date string
+            LocalDate givenDate = LocalDate.parse(dateStr, dateFormatter);
+            // Get the current date
+            LocalDate currentDate = LocalDate.now();
+
+            // Compare the given date with the current date
+            if (givenDate.isBefore(currentDate)) {
+                return -1; // Given date is in the past
+            } else if (givenDate.isEqual(currentDate)) {
+                return 0; // Given date is the same as the current date
+            } else {
+                return 1; // Given date is in the future
+            }
+        } catch (DateTimeParseException e) {
+            // Handle invalid date format
+            System.out.println("Invalid date format. Please use yyyy-MM-dd.");
+            return -2;
+        }
     }
 
     /**
@@ -49,15 +104,13 @@ public class Menu_PCR extends javax.swing.JFrame {
         PCR_Voltar1 = new javax.swing.JButton();
         Label_Hora_Inicio_SAV = new javax.swing.JLabel();
         Hora_Inicio_SAV = new javax.swing.JFormattedTextField();
-        Label_Procedimento_SAV = new javax.swing.JLabel();
-        SAV_Ventilacao = new javax.swing.JCheckBox();
-        SAV_Desfibrlhação = new javax.swing.JCheckBox();
-        SAV_CTE = new javax.swing.JCheckBox();
-        SAV_Farmacos = new javax.swing.JCheckBox();
         Label_Hora_Inicio_SAV1 = new javax.swing.JLabel();
         Label_RCE = new javax.swing.JLabel();
         RCE_box = new javax.swing.JComboBox<>();
-        Hora_Inicio_SAV1 = new javax.swing.JFormattedTextField();
+        Hora_Inicio_Choque = new javax.swing.JFormattedTextField();
+        dataChoque = new com.github.lgooddatepicker.components.DatePicker();
+        dataSAV = new com.github.lgooddatepicker.components.DatePicker();
+        validationString = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -66,11 +119,11 @@ public class Menu_PCR extends javax.swing.JFrame {
         jDesktopPanePCR1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PCR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 10))); // NOI18N
         jDesktopPanePCR1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Label_Motivo_PCR1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Motivo_PCR1.setText("Motivo PCR");
+        Label_Motivo_PCR1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Label_Equipa_Local_SAV1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Equipa_Local_SAV1.setText("Equipa Local faz SAV");
+        Label_Equipa_Local_SAV1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
         Motivo_box.setBackground(new java.awt.Color(242, 242, 242));
         Motivo_box.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -80,43 +133,42 @@ public class Menu_PCR extends javax.swing.JFrame {
             }
         });
 
+        Equipa_Local_SAV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Sim", "Nao", " " }));
         Equipa_Local_SAV.setBackground(new java.awt.Color(242, 242, 242));
         Equipa_Local_SAV.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Equipa_Local_SAV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Sim", "Nao", " " }));
         Equipa_Local_SAV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Equipa_Local_SAVActionPerformed(evt);
             }
         });
 
+        PCR_Voltar.setText("Cancelar");
         PCR_Voltar.setBackground(new java.awt.Color(242, 242, 242));
         PCR_Voltar.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        PCR_Voltar.setText("Voltar");
         PCR_Voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PCR_VoltarActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Evento: ");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         n_evento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
+        PCR_Voltar1.setText("Guardar");
         PCR_Voltar1.setBackground(new java.awt.Color(242, 242, 242));
         PCR_Voltar1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        PCR_Voltar1.setText("Guardar");
         PCR_Voltar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PCR_Voltar1ActionPerformed(evt);
+                GuardarAction(evt);
             }
         });
 
-        Label_Hora_Inicio_SAV.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Hora_Inicio_SAV.setText("Hora Inicio SAV:");
+        Label_Hora_Inicio_SAV.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Hora_Inicio_SAV.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        Hora_Inicio_SAV.setText("00:00");
+        Hora_Inicio_SAV.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("HH:mm"))));
         Hora_Inicio_SAV.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Hora_Inicio_SAV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,42 +176,26 @@ public class Menu_PCR extends javax.swing.JFrame {
             }
         });
 
-        Label_Procedimento_SAV.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Label_Procedimento_SAV.setText("Procedimentos SAV");
-
-        SAV_Ventilacao.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        SAV_Ventilacao.setText("Ventilação");
-
-        SAV_Desfibrlhação.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        SAV_Desfibrlhação.setText("Desfibrilhação");
-
-        SAV_CTE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        SAV_CTE.setText("CTE");
-
-        SAV_Farmacos.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        SAV_Farmacos.setText("Fármacos");
-
-        Label_Hora_Inicio_SAV1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_Hora_Inicio_SAV1.setText("Hora 1º Choque");
+        Label_Hora_Inicio_SAV1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
-        Label_RCE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         Label_RCE.setText("RCE");
+        Label_RCE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
+        RCE_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "sim", "não" }));
         RCE_box.setBackground(new java.awt.Color(242, 242, 242));
         RCE_box.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        RCE_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "sim", "não" }));
         RCE_box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RCE_boxActionPerformed(evt);
             }
         });
 
-        Hora_Inicio_SAV1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        Hora_Inicio_SAV1.setText("00:00");
-        Hora_Inicio_SAV1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        Hora_Inicio_SAV1.addActionListener(new java.awt.event.ActionListener() {
+        Hora_Inicio_Choque.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("HH:mm"))));
+        Hora_Inicio_Choque.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        Hora_Inicio_Choque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Hora_Inicio_SAV1ActionPerformed(evt);
+                Hora_Inicio_ChoqueActionPerformed(evt);
             }
         });
 
@@ -173,15 +209,13 @@ public class Menu_PCR extends javax.swing.JFrame {
         jDesktopPanePCR1.setLayer(PCR_Voltar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanePCR1.setLayer(Label_Hora_Inicio_SAV, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanePCR1.setLayer(Hora_Inicio_SAV, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPanePCR1.setLayer(Label_Procedimento_SAV, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPanePCR1.setLayer(SAV_Ventilacao, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPanePCR1.setLayer(SAV_Desfibrlhação, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPanePCR1.setLayer(SAV_CTE, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPanePCR1.setLayer(SAV_Farmacos, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanePCR1.setLayer(Label_Hora_Inicio_SAV1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanePCR1.setLayer(Label_RCE, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPanePCR1.setLayer(RCE_box, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPanePCR1.setLayer(Hora_Inicio_SAV1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPanePCR1.setLayer(Hora_Inicio_Choque, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPanePCR1.setLayer(dataChoque, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPanePCR1.setLayer(dataSAV, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPanePCR1.setLayer(validationString, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPanePCR1Layout = new javax.swing.GroupLayout(jDesktopPanePCR1);
         jDesktopPanePCR1.setLayout(jDesktopPanePCR1Layout);
@@ -191,45 +225,48 @@ public class Menu_PCR extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
-                        .addComponent(Label_Motivo_PCR1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(109, 109, 109)
                         .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Motivo_box, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(n_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
-                        .addComponent(Label_Equipa_Local_SAV1)
-                        .addGap(18, 18, 18)
-                        .addComponent(Equipa_Local_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
-                        .addComponent(Label_Hora_Inicio_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Hora_Inicio_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
-                        .addComponent(Label_Hora_Inicio_SAV1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Hora_Inicio_SAV1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPanePCR1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(validationString, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
+                                .addComponent(PCR_Voltar1)
+                                .addGap(70, 70, 70)
+                                .addComponent(PCR_Voltar)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
                         .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Label_Procedimento_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Label_RCE, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RCE_box, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
+                                .addComponent(Label_Motivo_PCR1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Motivo_box, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(n_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
+                                .addComponent(Label_Equipa_Local_SAV1)
+                                .addGap(18, 18, 18)
+                                .addComponent(Equipa_Local_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
+                                .addComponent(Label_Hora_Inicio_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dataSAV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Hora_Inicio_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
                                 .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(SAV_Ventilacao)
-                                    .addComponent(SAV_CTE))
+                                    .addComponent(Label_Hora_Inicio_SAV1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Label_RCE, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(SAV_Farmacos)
-                                    .addComponent(SAV_Desfibrlhação)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPanePCR1Layout.createSequentialGroup()
-                                .addComponent(PCR_Voltar1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(PCR_Voltar)
-                                .addGap(7, 7, 7)))))
-                .addGap(0, 6, Short.MAX_VALUE))
+                                    .addComponent(RCE_box, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jDesktopPanePCR1Layout.createSequentialGroup()
+                                        .addComponent(dataChoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Hora_Inicio_Choque, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jDesktopPanePCR1Layout.setVerticalGroup(
             jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,29 +286,24 @@ public class Menu_PCR extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Label_Hora_Inicio_SAV)
-                    .addComponent(Hora_Inicio_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Label_Procedimento_SAV)
-                    .addComponent(SAV_Ventilacao)
-                    .addComponent(SAV_Desfibrlhação))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SAV_CTE)
-                    .addComponent(SAV_Farmacos))
+                    .addComponent(Hora_Inicio_SAV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dataSAV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Label_Hora_Inicio_SAV1)
-                    .addComponent(Hora_Inicio_SAV1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Hora_Inicio_Choque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dataChoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Label_RCE)
                     .addComponent(RCE_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validationString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addGroup(jDesktopPanePCR1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PCR_Voltar)
-                    .addComponent(PCR_Voltar1))
-                .addContainerGap())
+                    .addComponent(PCR_Voltar1)
+                    .addComponent(PCR_Voltar))
+                .addGap(59, 59, 59))
         );
 
         Motivo_box.getAccessibleContext().setAccessibleName("Motivo");
@@ -280,24 +312,50 @@ public class Menu_PCR extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jDesktopPanePCR1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addGap(82, 82, 82))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jDesktopPanePCR1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 79, Short.MAX_VALUE))
+                .addGap(0, 46, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Hora_Inicio_ChoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hora_Inicio_ChoqueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Hora_Inicio_ChoqueActionPerformed
+
+    private void RCE_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RCE_boxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RCE_boxActionPerformed
+
+    private void Hora_Inicio_SAVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hora_Inicio_SAVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Hora_Inicio_SAVActionPerformed
+
+    private void GuardarAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarAction
+        boolean camposValidos = validarCampos();
+        if (camposValidos) {
+            Evento evento = new Evento();
+            evento.insertEventoDetails(Motivo_box.getSelectedItem().toString(),Equipa_Local_SAV.getSelectedItem().toString(), dataSAV.getDateStringOrEmptyString() + " " + Hora_Inicio_SAV.getText(), dataChoque.getDateStringOrEmptyString() + " " + Hora_Inicio_Choque.getText(), RCE_box.getSelectedItem().toString(), Integer.valueOf(n_evento.getText()));
+            int n_evento = evento.getMaxNEvent();
+            new Menu_1().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_GuardarAction
+
     private void PCR_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PCR_VoltarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-
+        Evento evento = new Evento();
+        evento.deleteEvento(Integer.valueOf(n_evento.getText()));
+        new Menu_1().setVisible(true);
     }//GEN-LAST:event_PCR_VoltarActionPerformed
 
     private void Equipa_Local_SAVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Equipa_Local_SAVActionPerformed
@@ -306,24 +364,7 @@ public class Menu_PCR extends javax.swing.JFrame {
 
     private void Motivo_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Motivo_boxActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_Motivo_boxActionPerformed
-
-    private void PCR_Voltar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PCR_Voltar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PCR_Voltar1ActionPerformed
-
-    private void Hora_Inicio_SAVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hora_Inicio_SAVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Hora_Inicio_SAVActionPerformed
-
-    private void RCE_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RCE_boxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RCE_boxActionPerformed
-
-    private void Hora_Inicio_SAV1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hora_Inicio_SAV1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Hora_Inicio_SAV1ActionPerformed
 
     private void setupComboBox() {
         Motivo_box.addItem("-");
@@ -334,9 +375,100 @@ public class Menu_PCR extends javax.swing.JFrame {
         }
     }
     
-    private void setupOptions() {
-     
+ 
+         private boolean validarCampos() {
+
+        if ("-".equals(Motivo_box.getSelectedItem().toString())) {
+            validationString.setText("Escolha o Local");
+            validationString.setForeground(Color.red);
+            Motivo_box.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            Motivo_box.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+        if ("-".equals(Equipa_Local_SAV.getSelectedItem().toString())) {
+            validationString.setText("Escolha o Quem Ativa");
+            validationString.setForeground(Color.red);
+            Equipa_Local_SAV.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            Equipa_Local_SAV.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if ("".equals(dataSAV.getDateStringOrEmptyString())) {
+            validationString.setText("Escolha data de SAV");
+            validationString.setForeground(Color.red);
+            dataSAV.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            dataSAV.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+        
+        if (!isValidTime(Hora_Inicio_SAV.getText())) {
+            validationString.setText("A hora do inicio SAV é invalida o formato tem que ser HH:mm");
+            validationString.setForeground(Color.red);
+            Hora_Inicio_SAV.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            Hora_Inicio_SAV.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+        
+         if ("".equals(dataChoque.getDateStringOrEmptyString())) {
+            validationString.setText("Escolha data de primeiro choque");
+            validationString.setForeground(Color.red);
+            dataChoque.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            dataChoque.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+        
+        if (!isValidTime(Hora_Inicio_Choque.getText())) {
+            validationString.setText("A hora do inicio 1º choque é invalida o formato tem que ser HH:mm");
+            validationString.setForeground(Color.red);
+            Hora_Inicio_Choque.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            Hora_Inicio_Choque.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+        
+     if ("-".equals(RCE_box.getSelectedItem().toString())) {
+            validationString.setText("Escolha uma opção PCR");
+            validationString.setForeground(Color.red);
+            RCE_box.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            RCE_box.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if (compareWithCurrentDate(dataSAV.getDateStringOrEmptyString()) == 1) {
+            validationString.setText("A data do SAV  tem quer ser no passado ou o dia atual");
+            validationString.setForeground(Color.red);
+            dataSAV.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            dataSAV.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+
+        if (compareWithCurrentDate(dataChoque.getDateStringOrEmptyString()) == 1) {
+            validationString.setText("A data de 1º choque tem quer ser no passado ou o dia atual");
+            validationString.setForeground(Color.red);
+            dataChoque.setBorder(new LineBorder(Color.RED));
+            return false;
+        } else {
+            dataChoque.setBorder(new LineBorder(Color.green));
+            validationString.setText("");
+        }
+        return true;
     }
+    
     
     
     /**
@@ -369,33 +501,31 @@ public class Menu_PCR extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu_PCR().setVisible(true);
+                new Menu_PCR("").setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Equipa_Local_SAV;
+    private javax.swing.JFormattedTextField Hora_Inicio_Choque;
     private javax.swing.JFormattedTextField Hora_Inicio_SAV;
-    private javax.swing.JFormattedTextField Hora_Inicio_SAV1;
     private javax.swing.JLabel Label_Equipa_Local_SAV1;
     private javax.swing.JLabel Label_Hora_Inicio_SAV;
     private javax.swing.JLabel Label_Hora_Inicio_SAV1;
     private javax.swing.JLabel Label_Motivo_PCR1;
-    private javax.swing.JLabel Label_Procedimento_SAV;
     private javax.swing.JLabel Label_RCE;
     private javax.swing.JComboBox<String> Motivo_box;
     private javax.swing.JButton PCR_Voltar;
     private javax.swing.JButton PCR_Voltar1;
     private javax.swing.JComboBox<String> RCE_box;
-    private javax.swing.JCheckBox SAV_CTE;
-    private javax.swing.JCheckBox SAV_Desfibrlhação;
-    private javax.swing.JCheckBox SAV_Farmacos;
-    private javax.swing.JCheckBox SAV_Ventilacao;
+    private com.github.lgooddatepicker.components.DatePicker dataChoque;
+    private com.github.lgooddatepicker.components.DatePicker dataSAV;
     private javax.swing.JDesktopPane jDesktopPanePCR1;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel n_evento;
     private java.awt.TextArea textArea1;
+    private java.awt.Label validationString;
     // End of variables declaration//GEN-END:variables
 
 }

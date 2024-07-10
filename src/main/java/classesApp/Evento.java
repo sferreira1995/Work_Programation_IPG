@@ -43,15 +43,15 @@ public class Evento {
 
     public Evento() {
     }
-    
-        public static void insertEvento(String dataEvento, String dataChamada, String dataChegada, String pcr, String activa, int vitima, String local, String Enfermeiro, String Medico ) {
-    Connection connection = OracleDatabaseConnection.getConnection();
-    String insertQuery = "INSERT INTO BD_TC_1709711.EVENTO ( DATA_HORA_EVENTO, DATA_HORA_CHAMADA, DATA_HORA_CHEGADA, PCR_S_N, QUEM_ATIVA_N_QUEM_ATIVA, VITIMA_N_PROCESSO, LOCAL_N_LOCAL, RESPOSTA_EEMI_MEDICO_N_MEDICO, RESPOSTA_EEMI_ENF_N_ENFERMEIRO)  VALUES "
-            + "(TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'), ?, (Select N_QUEM_ATIVA FROM BD_TC_1709711.QUEM_ATIVA WHERE QUEM_ATIVA= ? ), ? , (Select N_LOCAL FROM BD_TC_1709711.LOCAL WHERE LOCAL= ?), (Select N_MEDICO FROM BD_TC_1709711.RESPOSTA_EEMI_MEDICO WHERE NOME_MEDICO= ? ), (Select N_ENFERMEIRO FROM BD_TC_1709711.RESPOSTA_EEMI_ENF WHERE NOME_ENFERMEIRO= ? ))";
-    String test="";
-            System.out.println(insertQuery);
-    try {
-   
+
+    public static void insertEvento(String dataEvento, String dataChamada, String dataChegada, String pcr, String activa, int vitima, String local, String Enfermeiro, String Medico) {
+        Connection connection = OracleDatabaseConnection.getConnection();
+        String insertQuery = "INSERT INTO BD_TC_1709711.EVENTO ( DATA_HORA_EVENTO, DATA_HORA_CHAMADA, DATA_HORA_CHEGADA, PCR_S_N, QUEM_ATIVA_N_QUEM_ATIVA, VITIMA_N_PROCESSO, LOCAL_N_LOCAL, RESPOSTA_EEMI_MEDICO_N_MEDICO, RESPOSTA_EEMI_ENF_N_ENFERMEIRO)  VALUES "
+                + "(TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'), ?, (Select N_QUEM_ATIVA FROM BD_TC_1709711.QUEM_ATIVA WHERE QUEM_ATIVA= ? ), ? , (Select N_LOCAL FROM BD_TC_1709711.LOCAL WHERE LOCAL= ?), (Select N_MEDICO FROM BD_TC_1709711.RESPOSTA_EEMI_MEDICO WHERE NOME_MEDICO= ? ), (Select N_ENFERMEIRO FROM BD_TC_1709711.RESPOSTA_EEMI_ENF WHERE NOME_ENFERMEIRO= ? ))";
+        String test = "";
+        System.out.println(insertQuery);
+        try {
+
             // Process does not exist, insert new record
             PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
             insertStatement.setString(1, dataEvento);
@@ -65,24 +65,48 @@ public class Evento {
             insertStatement.setString(9, Enfermeiro);
 
             insertStatement.executeUpdate();
-            
+
         } catch (SQLException e) {
-            
+
             System.out.println("Error verifying or inserting Event records: " + e.getMessage());
         } finally {
             OracleDatabaseConnection.closeConnection(connection);
         }
     }
 
+    public static void insertEventoDetails(String motivo, String sav, String horaSav, String horaChoque, String rce, int evento) {
+        Connection connection = OracleDatabaseConnection.getConnection();
+        String insertQuery = "UPDATE BD_TC_1709711.EVENTO SET MOTIVO_PCR_N_MOTIVO = (SELECT N_MOTIVO FROM BD_TC_1709711.MOTIVO_PCR WHERE MOTIVO=? ), EQUIPA_LOCAL_SAV=?, HORA_INICIO_SAV=TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'),HORA_1_DESFIBRILHACAO=TO_DATE(?, 'YYYY-MM-DD HH24:MI:SS'), RCE=? WHERE N_Evento=?";
+
+        System.out.println(insertQuery);
+        try {
+
+            // Process does not exist, insert new record
+            PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
+            insertStatement.setString(1, motivo);
+            insertStatement.setString(2, sav);
+            insertStatement.setString(3, horaSav);
+            insertStatement.setString(4, horaChoque);
+            insertStatement.setString(5, rce);
+            insertStatement.setInt(6, evento);
+
+            insertStatement.executeUpdate();
+
+        } catch (SQLException e) {
+
+            System.out.println("Error updating Event records: " + e.getMessage());
+        } finally {
+            OracleDatabaseConnection.closeConnection(connection);
+        }
+    }
+
     public static int getAllEventos() {
-        List<Evento> Lista_Eventos = new ArrayList<>();
         Connection connection = OracleDatabaseConnection.getConnection();
         String query = "SELECT count(*) AS total_Eventos FROM BD_TC_1709711.EVENTO";
-       int total=0;
+        int total = 0;
         try {
             ResultSet resultSet = OracleDatabaseConnection.executeQuery(connection, query);
             while (resultSet.next()) {
-                String funcao = resultSet.getString("Evento");
                 total = resultSet.getInt("total_Eventos");
 
             }
@@ -93,8 +117,29 @@ public class Evento {
         }
         return total;
     }
-    
-        public static int getMaxNEvent() {
+
+    public static void deleteEvento(int env) {
+
+        Connection connection = OracleDatabaseConnection.getConnection();
+        String query = "DELETE FROM BD_TC_1709711.EVENTO WHERE N_EVENTO=?";
+
+        System.out.println(query);
+        try {
+
+            // Process does not exist, insert new record
+            PreparedStatement insertStatement = connection.prepareStatement(query);
+            insertStatement.setInt(1, env);
+            insertStatement.executeUpdate();
+
+        } catch (SQLException e) {
+
+            System.out.println("Error updating Event records: " + e.getMessage());
+        } finally {
+            OracleDatabaseConnection.closeConnection(connection);
+        }
+    }
+
+    public static int getMaxNEvent() {
         Connection connection = OracleDatabaseConnection.getConnection();
         String query = "SELECT MAX(N_EVENTO) AS max_N_EVENT FROM BD_TC_1709711.EVENTO";
         int maxNEvent = 0;
@@ -109,7 +154,7 @@ public class Evento {
         } finally {
             OracleDatabaseConnection.closeConnection(connection);
         }
-        
+
         return maxNEvent;
     }
 }

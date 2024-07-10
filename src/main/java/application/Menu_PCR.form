@@ -30,9 +30,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jDesktopPanePCR1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="116" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -40,7 +41,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jDesktopPanePCR1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="79" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="46" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,59 +70,64 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="validationString" min="-2" pref="349" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="PCR_Voltar1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                                  <Component id="PCR_Voltar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
                       <Group type="102" attributes="0">
-                          <Component id="Label_Motivo_PCR1" min="-2" pref="92" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Motivo_box" min="-2" pref="171" max="-2" attributes="0"/>
-                              <Component id="n_evento" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Component id="jLabel1" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="Label_Equipa_Local_SAV1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="Equipa_Local_SAV" min="-2" pref="171" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="Label_Hora_Inicio_SAV" min="-2" pref="103" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Hora_Inicio_SAV" min="-2" pref="68" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="Label_Hora_Inicio_SAV1" min="-2" pref="103" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Hora_Inicio_SAV1" min="-2" pref="68" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Label_Procedimento_SAV" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
-                              <Component id="Label_RCE" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="RCE_box" min="-2" pref="171" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
+                                  <Component id="Label_Motivo_PCR1" min="-2" pref="92" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="SAV_Ventilacao" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="SAV_CTE" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Motivo_box" min="-2" pref="171" max="-2" attributes="0"/>
+                                      <Component id="n_evento" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="jLabel1" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="Label_Equipa_Local_SAV1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="Equipa_Local_SAV" min="-2" pref="171" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="Label_Hora_Inicio_SAV" min="-2" pref="103" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="dataSAV" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="Hora_Inicio_SAV" min="-2" pref="68" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="Label_Hora_Inicio_SAV1" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
+                                      <Component id="Label_RCE" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="SAV_Farmacos" min="-2" max="-2" attributes="0"/>
-                                      <Component id="SAV_Desfibrlhação" min="-2" max="-2" attributes="0"/>
+                                      <Component id="RCE_box" min="-2" pref="171" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="dataChoque" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="Hora_Inicio_Choque" min="-2" pref="68" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="PCR_Voltar1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="PCR_Voltar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                              </Group>
                           </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -147,34 +153,27 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Label_Hora_Inicio_SAV" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Hora_Inicio_SAV" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Label_Procedimento_SAV" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="SAV_Ventilacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="SAV_Desfibrlhação" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="SAV_CTE" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="SAV_Farmacos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dataSAV" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Label_Hora_Inicio_SAV1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Hora_Inicio_SAV1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Hora_Inicio_Choque" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dataChoque" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Label_RCE" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="RCE_box" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="PCR_Voltar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="PCR_Voltar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="validationString" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="PCR_Voltar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="PCR_Voltar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -182,18 +181,18 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="Label_Motivo_PCR1">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Motivo PCR"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Motivo PCR"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Label_Equipa_Local_SAV1">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Equipa Local faz SAV"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Equipa Local faz SAV"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="Motivo_box">
@@ -220,12 +219,6 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="Equipa_Local_SAV">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f2" green="f2" red="f2" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
                 <StringItem index="0" value="-"/>
@@ -233,6 +226,12 @@
                 <StringItem index="2" value="Nao"/>
                 <StringItem index="3" value=" "/>
               </StringArray>
+            </Property>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f2" green="f2" red="f2" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="10" style="0"/>
             </Property>
           </Properties>
           <Events>
@@ -244,13 +243,13 @@
         </Component>
         <Component class="javax.swing.JButton" name="PCR_Voltar">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Cancelar"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f2" green="f2" red="f2" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Voltar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PCR_VoltarActionPerformed"/>
@@ -258,10 +257,10 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Evento: "/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Evento: "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="n_evento">
@@ -276,32 +275,31 @@
         </Component>
         <Component class="javax.swing.JButton" name="PCR_Voltar1">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Guardar"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f2" green="f2" red="f2" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PCR_Voltar1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GuardarAction"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="Label_Hora_Inicio_SAV">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Hora Inicio SAV:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Hora Inicio SAV:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="Hora_Inicio_SAV">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format subtype="1" type="2"/>
+              <Format format="HH:mm" subtype="-1" type="2"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="00:00"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
@@ -310,76 +308,36 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Hora_Inicio_SAVActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="Label_Procedimento_SAV">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Procedimentos SAV"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="SAV_Ventilacao">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Ventila&#xe7;&#xe3;o"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="SAV_Desfibrlha&#xe7;&#xe3;o">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Desfibrilha&#xe7;&#xe3;o"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="SAV_CTE">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="CTE"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="SAV_Farmacos">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="F&#xe1;rmacos"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="Label_Hora_Inicio_SAV1">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Hora 1&#xba; Choque"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Hora 1&#xba; Choque"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Label_RCE">
           <Properties>
+            <Property name="text" type="java.lang.String" value="RCE"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="RCE"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="RCE_box">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f2" green="f2" red="f2" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="10" style="0"/>
-            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
                 <StringItem index="0" value="-"/>
                 <StringItem index="1" value="sim"/>
                 <StringItem index="2" value="n&#xe3;o"/>
               </StringArray>
+            </Property>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f2" green="f2" red="f2" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="10" style="0"/>
             </Property>
           </Properties>
           <Events>
@@ -389,19 +347,24 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="Hora_Inicio_SAV1">
+        <Component class="javax.swing.JFormattedTextField" name="Hora_Inicio_Choque">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format subtype="1" type="2"/>
+              <Format format="HH:mm" subtype="-1" type="2"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="00:00"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Hora_Inicio_SAV1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Hora_Inicio_ChoqueActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="com.github.lgooddatepicker.components.DatePicker" name="dataChoque">
+        </Component>
+        <Component class="com.github.lgooddatepicker.components.DatePicker" name="dataSAV">
+        </Component>
+        <Component class="java.awt.Label" name="validationString">
         </Component>
       </SubComponents>
     </Container>

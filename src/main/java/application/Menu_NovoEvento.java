@@ -848,8 +848,7 @@ public class Menu_NovoEvento extends javax.swing.JFrame {
             evento.insertEvento(dataEvento.getDateStringOrEmptyString() + " " + hora_Evento.getText(), dataChamada.getDateStringOrEmptyString() + " " + hora_Chamada.getText(), dataChegada.getDateStringOrEmptyString() + " " + hora_Chegada.getText(), pcr_box.getSelectedItem().toString(), Quem_Ativa_box.getSelectedItem().toString(), Integer.valueOf(N_Processo.getText()), Local_box.getSelectedItem().toString(), Nome_Enfermeiro.getSelectedItem().toString(), Nome_Medico.getSelectedItem().toString());
             int n_evento = evento.getMaxNEvent();
             if ("sim".equals(pcr_box.getSelectedItem().toString())) {
-                Menu_PCR pcr = new Menu_PCR();
-                pcr.n_evento.setText("" + n_evento);
+                Menu_PCR pcr = new Menu_PCR(""+n_evento);
                 pcr.setVisible(true);
 
             } else {
